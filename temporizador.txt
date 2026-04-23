@@ -1,0 +1,36 @@
+char[] charSX;
+string l;
+int a, b;
+int c = 0;
+bool vih = false;
+do 
+{
+    c+= 1;
+    Console.Write("n: "); 
+    l = Console.ReadLine();
+
+    charSX = l.ToCharArray();
+    a = charSX.Length;
+    Console.WriteLine(a);
+    if (int.TryParse(l, out b))
+    {
+        vih = true;
+    }
+    else
+    {
+        vih = false;
+        Console.WriteLine("no se pude , metele numero");
+    }
+    if (c == 3) 
+    {
+        for (int i = 5; i > 0; i--)
+        {
+            Console.WriteLine($"Iniciando temporizador de cierre...{i}");
+            Thread.Sleep(1000);
+            
+
+        }
+        Environment.Exit(0);
+    }
+
+} while (!vih);
