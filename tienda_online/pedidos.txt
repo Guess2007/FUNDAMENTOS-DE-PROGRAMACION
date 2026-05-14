@@ -1,0 +1,4 @@
+SELECT id_cliente FROM tienda_online.pedidos where estado = "entregado"group by id_cliente 
+having count(*);
+select avg(cant) from (select count(*) as cant from pedidos
+    where estado = "entregado" group by id_cliente) as prom_entregado

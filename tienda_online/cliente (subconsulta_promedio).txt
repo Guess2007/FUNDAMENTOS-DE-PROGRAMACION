@@ -1,0 +1,4 @@
+select * from tienda_online.clientes; /* el asterisco significa all o todo*/
+SELECT count(*) FROM tienda_online.clientes;
+select sum(id_cliente) from tienda_online.clientes;
+

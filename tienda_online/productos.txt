@@ -1,0 +1,11 @@
+SELECT * FROM tienda_online.productos;
+
+select p.nombre, p.categoria, p.precio, p.stock from productos p where precio > 
+(
+	select avg(p1.precio) from productos p1
+    where p1.categoria = p.categoria
+)
+and stock < 
+(
+	select avg(stock) from productos 
+);

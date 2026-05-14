@@ -1,0 +1,143 @@
+CREATE DATABASE tienda_online;
+
+USE tienda_online;
+
+
+
+CREATE TABLE clientes (
+
+  id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+
+  nombre VARCHAR(100) NOT NULL,
+
+  email VARCHAR(100) UNIQUE NOT NULL,
+
+  ciudad VARCHAR(50),
+
+  fecha_registro DATE DEFAULT (CURRENT_DATE)
+
+);
+
+
+
+CREATE TABLE productos (
+
+  id_producto INT AUTO_INCREMENT PRIMARY KEY,
+
+  nombre VARCHAR(100) NOT NULL,
+
+  categoria VARCHAR(50),
+
+  precio DECIMAL(10,2) NOT NULL,
+
+  stock INT DEFAULT 0
+
+);
+
+
+
+CREATE TABLE pedidos (
+
+  id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+
+  id_cliente INT NOT NULL,
+
+  fecha_pedido DATE DEFAULT (CURRENT_DATE),
+
+  estado ENUM('pendiente','enviado','entregado','cancelado') DEFAULT 'pendiente',
+
+  FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente) ON DELETE CASCADE
+
+);
+
+
+
+CREATE TABLE detalle_pedidos (
+
+  id_detalle INT AUTO_INCREMENT PRIMARY KEY,
+
+  id_pedido INT NOT NULL,
+
+  id_producto INT NOT NULL,
+
+  cantidad INT NOT NULL,
+
+  precio_unitario DECIMAL(10,2) NOT NULL,
+
+  FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido) ON DELETE CASCADE,
+
+  FOREIGN KEY (id_producto) REFERENCES productos(id_producto) ON DELETE RESTRICT
+
+);
+
+INSERT INTO clientes (nombre, email, ciudad, fecha_registro) VALUES
+
+('Ana García', 'ana@email.com', 'Madrid', '2024-01-15'),
+
+('Luis Pérez', 'luis@email.com', 'Barcelona', '2024-02-20'),
+
+('Marta López', 'marta@email.com', 'Valencia', '2024-03-10'),
+
+('Carlos Ruiz', 'carlos@email.com', 'Sevilla', '2024-01-05'),
+
+('Sofia Martín', 'sofia@email.com', 'Madrid', '2024-04-12');
+
+
+
+INSERT INTO productos (nombre, categoria, precio, stock) VALUES
+
+('Laptop Pro', 'Electrónica', 1200.00, 15),
+
+('Mouse Inalámbrico', 'Electrónica', 25.50, 50),
+
+('Mesa de Oficina', 'Muebles', 150.00, 10),
+
+('Silla Ergonómica', 'Muebles', 200.00, 8),
+
+('Teclado Mecánico', 'Electrónica', 75.00, 30),
+
+('Monitor 27"', 'Electrónica', 1100.00, 12),
+
+('Lámpara LED', 'Iluminación', 45.00, 40);
+
+INSERT INTO productos (nombre, categoria, precio, stock) VALUES
+
+('Estantería Básica', 'Muebles', 40.00, 25),
+
+('Sillón Económico', 'Muebles', 90.00, 18);
+
+
+
+INSERT INTO pedidos (id_cliente, fecha_pedido, estado) VALUES
+
+(1, '2024-05-10', 'entregado'), (1, '2024-06-15', 'enviado'),
+
+(2, '2024-05-20', 'entregado'), (3, '2024-07-01', 'pendiente'),
+
+(2, '2024-07-10', 'cancelado'), (4, '2024-06-25', 'entregado'),
+
+(5, '2024-08-01', 'pendiente');
+
+INSERT INTO pedidos (id_cliente, fecha_pedido, estado) VALUES
+
+(1, '2024-09-10', 'entregado');
+
+
+
+
+
+INSERT INTO detalle_pedidos (id_pedido, id_producto, cantidad, precio_unitario) VALUES
+
+(1, 1, 1, 1200.00), (1, 2, 2, 25.50),
+
+(2, 5, 1, 75.00), (2, 6, 1, 300.00),
+
+(3, 3, 1, 150.00), (3, 4, 2, 200.00),
+
+(4, 1, 1, 1200.00), (4, 7, 3, 45.00),
+
+(6, 2, 5, 25.50), (6, 5, 2, 75.00);
+
+INSERT INTO detalle_pedidos (id_pedido, id_producto, cantidad, precio_unitario) VALUES
+
+(8, 3, 1, 150.00);

@@ -1,0 +1,10 @@
+use tienda_online;
+select nombre, ciudad from clientes where id_cliente in (
+select id_cliente from pedidos where estado = "entregado"
+group by id_cliente
+having count(*) > 
+	(
+	select avg(cant) from (select count(*) as cant from pedidos
+    where estado = "entregado" group by id_cliente) as prom_entregado
+    )
+);
