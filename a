@@ -1,0 +1,5 @@
+SELECT * FROM agroglobal_system.productos;
+select nombre_producto, categoria, precio_sugerido_exportacion where sku in 
+( 
+	select sku like ("$1") from productos
+);
