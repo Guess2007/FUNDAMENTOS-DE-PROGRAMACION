@@ -1,0 +1,43 @@
+INSERT INTO Productos (sku, nombre_producto, categoria, variedad, precio_sugerido_exportacion) VALUES
+('PALTA001', 'Palta Hass Premium', 'Palta Hass', 'Hass', 2.50),
+('MANGO001', 'Mango Kent Export', 'Mango Kent', 'Kent', 1.80),
+('MAND001', 'Mandarina Dulce', 'mandarina', 'Murcott', 1.20),
+('PITA001', 'Pitahaya Roja', 'Pitahaya', 'Red', 3.00);
+
+INSERT INTO Lotes (codigo_trazabilidad, fecha_cosecha, finca_origen, certificaciones, estado_maduracion) VALUES
+('LOT001', '2026-04-20', 'Finca El Sol', 'GlobalGAP, Organic', 'Listo'),
+('LOT002', '2026-04-22', 'Finca Los Andes', 'RainForest', 'En proceso'),
+('LOT003', '2026-04-25', 'Finca Santa Rosa', 'GlobalGAP', 'Verde'),
+('LOT004', '2026-04-28', 'Finca La Esperanza', 'Organic', 'Listo');
+INSERT INTO Canales (nombre_empresa, tipo_canal, pais_destino, email_contacto) VALUES
+('Distribuidora Europa', 'Distribuidor', 'España', 'ventas@europa.com'),
+('Retail FreshMarket', 'Retailer', 'EEUU', 'contact@freshmarket.com'),
+('Broker Andino', 'Broker', 'Chile', 'broker@andino.cl'),
+('Procesadora TropicFruit', 'Procesadora', 'Alemania', 'info@tropicfruit.de');
+INSERT INTO Transacciones (factura_nro, canal_id, incoterm, monto_total, estado_pago) VALUES
+('FAC001', 1, 'FOB', 25000.00, 'Pagado'),
+('FAC002', 2, 'CIF', 18000.00, 'Pendiente'),
+('FAC003', 3, 'EXW', 12000.00, 'Vencido');
+INSERT INTO TransaccionesDetalle (transaccion_id, producto_id, lote_id, cantidad_tm, precio_unitario_tm) VALUES
+(1, 1, 1, 10.500, 2400.00),
+(1, 2, 2, 8.200, 1750.00),
+(2, 3, 3, 15.000, 1100.00),
+(3, 4, 4, 5.000, 2900.00);
+INSERT INTO Despachos (transaccion_id, contenedor_id, placa_camion, temp_requerida_celsius, puerto_origen, eta_puerto, estatus_documental) VALUES
+(1, 'CONT001', 'ABC-123', 5.00, 'Puerto Callao', '2026-05-10 08:00:00', 'Aprobado/Liberado'),
+(2, 'CONT002', 'XYZ-456', 6.00, 'Puerto Paita', '2026-05-12 14:00:00', 'En Revisión');
+
+INSERT INTO MonitoreoPuerto (despacho_id, hora_llegada_real, hora_inicio_carga, tiempo_espera_horas, motivo_demora) VALUES
+(1, '2026-05-10 09:00:00', '2026-05-10 10:30:00', 1.50, 'Retraso en documentación'),
+(2, '2026-05-12 15:00:00', '2026-05-12 16:00:00', 1.00, 'Congestión en puerto');
+
+INSERT INTO ConsumidoresFinales (email, nombre, pais_residencia, interes_principal) VALUES
+('ana.salud@example.com', 'Ana Torres', 'Perú', 'Salud/Nutricion'),
+('carlos.sostenible@example.com', 'Carlos Pérez', 'Alemania', 'Sostenibilidad'),
+('maria.gourmet@example.com', 'María López', 'EEUU', 'Recetas/Gourmet');
+
+INSERT INTO InteraccionesQR (consumidor_id, lote_id, fecha_escaneo, comentario_calidad, puntuacion_sabor) VALUES
+(1, 1, '2026-05-05 12:00:00', 'Excelente frescura y sabor', 5),
+(2, 2, '2026-05-06 09:30:00', 'Buen producto pero llegó verde', 3),
+(3, 4, '2026-05-07 18:45:00', 'Muy dulce y jugoso', 4);
+

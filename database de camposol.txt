@@ -1,0 +1,110 @@
+CREATE DATABASE AgroGlobal_System;
+USE AgroGlobal_System;
+
+-- ======================================================
+-- SECCIÓN 1: MAESTROS Y PRODUCCIÓN (Trazabilidad)
+-- ======================================================
+
+CREATE TABLE Productos (
+    producto_id INT PRIMARY KEY AUTO_INCREMENT,
+    sku VARCHAR(50) UNIQUE,
+    nombre_producto VARCHAR(100),
+    categoria ENUM('Frutas', 'Hortalizas', 'Granos', 'Procesados'),
+    variedad VARCHAR(50), -- Ej: Palta Hass, Mango Kent
+    precio_sugerido_exportacion DECIMAL(10, 2)
+);
+
+CREATE TABLE Lotes (
+    lote_id INT PRIMARY KEY AUTO_INCREMENT,
+    codigo_trazabilidad VARCHAR(50) UNIQUE, -- ID para el código QR
+    fecha_cosecha DATE,
+    finca_origen VARCHAR(100),
+    certificaciones VARCHAR(255), -- GlobalGAP, Organic, RainForest
+    estado_maduracion ENUM('Verde', 'En proceso', 'Listo', 'Pasado')
+);
+
+-- ======================================================
+-- SECCIÓN 2: CANALES Y TRANSACCIONES (Negocio B2B)
+-- ======================================================
+
+CREATE TABLE Canales (
+    canal_id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_empresa VARCHAR(100),
+    tipo_canal ENUM('Distribuidor', 'Retailer', 'Broker', 'Procesadora'),
+    pais_destino VARCHAR(50),
+    email_contacto VARCHAR(100)
+);
+
+CREATE TABLE Transacciones (
+    transaccion_id INT PRIMARY KEY AUTO_INCREMENT,
+    factura_nro VARCHAR(50) UNIQUE,
+    canal_id INT,
+    fecha_transaccion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    incoterm ENUM('EXW', 'FOB', 'CIF', 'DDP'),
+    moneda VARCHAR(3) DEFAULT 'USD',
+    monto_total DECIMAL(15, 2),
+    estado_pago ENUM('Pendiente', 'Pagado', 'Vencido'),
+    FOREIGN KEY (canal_id) REFERENCES Canales(canal_id)
+);
+
+CREATE TABLE TransaccionesDetalle (
+    detalle_id INT PRIMARY KEY AUTO_INCREMENT,
+    transaccion_id INT,
+    producto_id INT,
+    lote_id INT,
+    cantidad_tm DECIMAL(10, 3), -- Toneladas Métricas
+    precio_unitario_tm DECIMAL(12, 2),
+    FOREIGN KEY (transaccion_id) REFERENCES Transacciones(transaccion_id),
+    FOREIGN KEY (producto_id) REFERENCES Productos(producto_id),
+    FOREIGN KEY (lote_id) REFERENCES Lotes(lote_id)
+);
+
+-- ======================================================
+-- SECCIÓN 3: LOGÍSTICA DE SALIDA (Sincronización en Tiempo Real)
+-- ======================================================
+
+CREATE TABLE Despachos (
+    despacho_id INT PRIMARY KEY AUTO_INCREMENT,
+    transaccion_id INT,
+    contenedor_id VARCHAR(50),
+    placa_camion VARCHAR(20),
+    temp_requerida_celsius DECIMAL(4, 2),
+    puerto_origen VARCHAR(100),
+    eta_puerto DATETIME, -- Hora estimada de llegada al puerto
+    estatus_documental ENUM('Incompleto', 'En Revisión', 'Aprobado/Liberado'),
+    FOREIGN KEY (transaccion_id) REFERENCES Transacciones(transaccion_id)
+);
+
+CREATE TABLE MonitoreoPuerto (
+    monitoreo_id INT PRIMARY KEY AUTO_INCREMENT,
+    despacho_id INT,
+    hora_llegada_real DATETIME,
+    hora_inicio_carga DATETIME,
+    tiempo_espera_horas DECIMAL(5, 2), -- Calculado para detectar ineficiencias
+    motivo_demora VARCHAR(255),
+    FOREIGN KEY (despacho_id) REFERENCES Despachos(despacho_id)
+);
+
+-- ======================================================
+-- SECCIÓN 4: CONSUMIDOR FINAL (Marketing Personalizado)
+-- ======================================================
+
+CREATE TABLE ConsumidoresFinales (
+    consumidor_id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(100) UNIQUE,
+    nombre VARCHAR(100),
+    pais_residencia VARCHAR(50),
+    interes_principal ENUM('Salud/Nutricion', 'Sostenibilidad', 'Recetas/Gourmet'),
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE InteraccionesQR (
+    interaccion_id INT PRIMARY KEY AUTO_INCREMENT,
+    consumidor_id INT,
+    lote_id INT, -- Conecta al consumidor con el origen del producto
+    fecha_escaneo DATETIME,
+    comentario_calidad TEXT,
+    puntuacion_sabor INT CHECK (puntuacion_sabor BETWEEN 1 AND 5),
+    FOREIGN KEY (consumidor_id) REFERENCES ConsumidoresFinales(consumidor_id),
+    FOREIGN KEY (lote_id) REFERENCES Lotes(lote_id)
+);

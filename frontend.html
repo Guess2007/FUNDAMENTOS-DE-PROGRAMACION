@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgroCampos - Empresa Agroindustrial</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#f4f7f2;
+      color:#333;
+    }
+
+    header{
+      background:#2e7d32;
+      color:white;
+      padding:20px 60px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    header h1{
+      font-size:28px;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:25px;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#c8e6c9;
+    }
+
+    .hero{
+      height:90vh;
+      background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1400&q=80');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:white;
+      padding:20px;
+    }
+
+    .hero-content h2{
+      font-size:55px;
+      margin-bottom:20px;
+    }
+
+    .hero-content p{
+      font-size:20px;
+      margin-bottom:30px;
+      max-width:700px;
+    }
+
+    .btn{
+      background:#66bb6a;
+      color:white;
+      padding:15px 30px;
+      border:none;
+      border-radius:5px;
+      text-decoration:none;
+      font-size:18px;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#43a047;
+    }
+
+    section{
+      padding:70px 60px;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .section-title h2{
+      font-size:38px;
+      color:#2e7d32;
+      margin-bottom:10px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+      gap:25px;
+    }
+
+    .card{
+      background:white;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+    }
+
+    .card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:20px;
+    }
+
+    .card-content h3{
+      color:#2e7d32;
+      margin-bottom:10px;
+    }
+
+    .about{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:10px;
+    }
+
+    .about-text h2{
+      color:#2e7d32;
+      margin-bottom:20px;
+      font-size:36px;
+    }
+
+    .about-text p{
+      line-height:1.8;
+      margin-bottom:15px;
+    }
+
+    .contact{
+      background:#2e7d32;
+      color:white;
+      text-align:center;
+      border-radius:10px;
+      padding:50px;
+    }
+
+    .contact h2{
+      margin-bottom:20px;
+      font-size:36px;
+    }
+
+    footer{
+      background:#1b5e20;
+      color:white;
+      text-align:center;
+      padding:20px;
+      margin-top:50px;
+    }
+
+    @media(max-width:768px){
+
+      header{
+        flex-direction:column;
+      }
+
+      nav{
+        margin-top:15px;
+      }
+
+      .hero-content h2{
+        font-size:38px;
+      }
+
+      .about{
+        grid-template-columns:1fr;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>AgroCampos</h1>
+
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Nosotros</a>
+      <a href="#">Productos</a>
+      <a href="#">Servicios</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Innovación Agroindustrial Sostenible</h2>
+      <p>
+        Líderes en producción y exportación de productos agrícolas
+        de alta calidad comprometidos con el desarrollo sostenible.
+      </p>
+
+      <a href="#" class="btn">Conocer Más</a>
+    </div>
+  </section>
+
+  <section>
+
+    <div class="section-title">
+      <h2>Nuestros Productos</h2>
+      <p>Producción agrícola de calidad internacional</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+          <h3>Paltas Hass</h3>
+          <p>
+            Exportación de paltas frescas con estándares internacionales.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+          <h3>Arándanos</h3>
+          <p>
+            Producción sostenible de arándanos premium para mercados globales.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1574226516831-e1dff420e37f?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+          <h3>Mangos</h3>
+          <p>
+            Frutas seleccionadas con procesos modernos de conservación.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section>
+
+    <div class="about">
+
+      <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80">
+
+      <div class="about-text">
+        <h2>Sobre Nosotros</h2>
+
+        <p>
+          AgroCampos es una empresa agroindustrial enfocada en la producción,
+          procesamiento y exportación de alimentos agrícolas de alta calidad.
+        </p>
+
+        <p>
+          Aplicamos tecnología e innovación para optimizar nuestros procesos,
+          garantizando sostenibilidad, eficiencia y satisfacción del cliente.
+        </p>
+
+        <a href="#" class="btn">Leer Más</a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section>
+
+    <div class="contact">
+      <h2>Contáctanos</h2>
+
+      <p>
+        Escríbenos para conocer más sobre nuestros productos y servicios.
+      </p>
+
+      <br>
+
+      <a href="#" class="btn">Enviar Mensaje</a>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>© 2026 AgroCampos - Todos los derechos reservados</p>
+  </footer>
+
+</body>
+</html>
