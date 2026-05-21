@@ -6,32 +6,45 @@ create table Alumnos_biblioteca
 	id int primary key auto_increment,
     c_estudiante varchar(9) unique not null,
     nombre char(20) not null,
-    h_ingreso datetime
+	rgs_diario int(3) not null,
+    ultimo_dia_ingresado date default (current_date())
 );
 
-create table ganacias
+create table detalle_pedido_alumno
+(
+	id_pedido int primary key auto_increment,
+    idc_alumno int not null,
+    pago decimal(4,2) not null,
+    metodo enum('efectivo','tarjeta','aplicativo') default '[vacio]' not null
+);
+
+create table ventas
 (
 	in_sell int primary key auto_increment,
-    books_k char(25) unique not null,
+    books_k char(25) unique not null
 );
 create table libros
 (
 	libros_id int primary key auto_increment,
-    estudiante_id int auto_increment,
+    estudiante_id int,
     nm_libro varchar(50) unique not null,
     autor char(50) unique,
-    editorial char(30) unique not null
+    editorial char(30) not null
 );
 
 create table inventario
 (
 	l_id int primary key auto_increment,
-    tipo char(20) not null,
-    email_proveedor varchar(30) unique not null
+    tipo enum('literatura', 'economia', 'derecho', 'medicina', 'arquitectura', 'ciencias medicas'
+    , 'software', 'numeros') default '[vacio]',
+    amount_b int(3) not null default 0,
+    email_proveedor varchar(30) unique not null,
+    valor_libro decimal(10,2) not null
 );
 
-create table lotes
+create table pagos
 (
 	Id_Lote int primary key auto_increment,
-    cod_lote int(12) 
+    cod_lote int(12), 
+    empresa varchar(30) not null, 
 );
