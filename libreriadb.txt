@@ -15,7 +15,8 @@ create table detalle_pedido_alumno
 	id_pedido int primary key auto_increment,
     idc_alumno int not null,
     pago decimal(4,2) not null,
-    metodo enum('efectivo','tarjeta','aplicativo') default '[vacio]' not null
+    metodo enum('efectivo','tarjeta','aplicativo') default '[vacio]' not null,
+    fecha_compra date default (current_date())
 );
 
 create table ventas
@@ -28,8 +29,9 @@ create table libros
 	libros_id int primary key auto_increment,
     estudiante_id int,
     nm_libro varchar(50) unique not null,
-    autor char(50) unique,
+    autor char(50),
     editorial char(30) not null
+    editorial_id int()
 );
 
 create table inventario
@@ -42,9 +44,20 @@ create table inventario
     valor_libro decimal(10,2) not null
 );
 
-create table pagos
+create table detalle_pago
+(
+	id_pedido int primary key auto_increment,
+    idc_alumno int not null,
+    pago decimal(4,2) not null,
+    n_cuenta int(20) not null unique,
+    metodo enum('efectivo','tarjeta','aplicativo') default '[vacio]' not null
+);
+
+create table pagos 
 (
 	Id_Lote int primary key auto_increment,
     cod_lote int(12), 
     empresa varchar(30) not null, 
+    precio_lote decimal(4,2) not null, 
+    editorial_origen int() not null
 );
