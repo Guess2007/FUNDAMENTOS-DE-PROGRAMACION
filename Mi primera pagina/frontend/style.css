@@ -1,0 +1,27 @@
+head
+{
+    background-color: aquamarine;
+}
+.title 
+{
+    color: aqua;
+    text-align: center;
+}
+.intro
+{
+    text-align: justify;
+}
+.subt
+{
+    text-align: end;
+}
+.p
+{
+    text-align: center;
+
+}
+.centrado
+{
+    display: block;
+    margin: auto;
+}
