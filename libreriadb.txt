@@ -1,0 +1,37 @@
+create database biblioteca;
+use biblioteca;
+
+create table Alumnos_biblioteca
+(
+	id int primary key auto_increment,
+    c_estudiante varchar(9) unique not null,
+    nombre char(20) not null,
+    h_ingreso datetime
+);
+
+create table ganacias
+(
+	in_sell int primary key auto_increment,
+    books_k char(25) unique not null,
+);
+create table libros
+(
+	libros_id int primary key auto_increment,
+    estudiante_id int auto_increment,
+    nm_libro varchar(50) unique not null,
+    autor char(50) unique,
+    editorial char(30) unique not null
+);
+
+create table inventario
+(
+	l_id int primary key auto_increment,
+    tipo char(20) not null,
+    email_proveedor varchar(30) unique not null
+);
+
+create table lotes
+(
+	Id_Lote int primary key auto_increment,
+    cod_lote int(12) 
+);
