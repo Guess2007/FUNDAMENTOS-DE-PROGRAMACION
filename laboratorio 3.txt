@@ -1,0 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            bool v;
+            int n;
+            do
+            {
+                
+                Console.WriteLine("which one would u like to use? \n1. submain 1 \n2. submain 2"); string l = Console.ReadLine();
+                v = int.TryParse(l, out n);
+                if (!v) 
+                {
+                    Console.WriteLine("Invalid command, try again");
+                }
+                Console.Clear();
+                if (n == 1)
+                {
+                    submain_1();
+                }
+                else if (n == 2)
+                {
+                    submain_2();
+                }
+
+            } while (!v);            
+        }
+
+        static public void submain_1() 
+        {
+            Console.WriteLine("Welcome to the sumatory program, in order to access our system, please, agree wuth our terms and policy");
+            Console.WriteLine("Terms and Policy"); string l = Console.ReadLine();
+            if (l == "n")
+            {
+                Console.WriteLine("Access denied, closing the system");
+            }
+            else if (l == "y") 
+            {
+                Console.WriteLine("Please, select the operation to execute"); l = Console.ReadLine();
+                switch (l) 
+                {
+                    case "sum":
+                        Console.WriteLine("first number to operate: ");
+                        int a = int.Parse(Console.ReadLine());
+                        Console.WriteLine("second number to operate: ");
+                        int b = int.Parse(Console.ReadLine());
+                        int c = a + b;
+                        Console.WriteLine("the result of the operation is " + c);
+                        Console.WriteLine("are you satisfied with ur result? c:");
+                        l = Console.ReadLine();
+                        if (l == "n") 
+                        {
+                            Console.WriteLine("replace the value of the first number");
+                            Console.Write("First number: " + a); Console.WriteLine("New number: " + l); l = Console.ReadLine();
+                            a = Convert.ToInt16(l);
+                            Console.WriteLine("New first number: " + a);
+                            Console.WriteLine("Do u wish to replace the second number or keep with the current numbers and proceed?");
+                            if (l == "y")
+                            {
+                                Console.WriteLine("replace the value of the second number");
+                                Console.Write("Second number: " + b); Console.WriteLine("New number: " + l); l = Console.ReadLine();
+                                b = Convert.ToInt16(l);
+                                Console.WriteLine("New first number: " + b);
+                            }
+                            else if (l == "n")
+                            {
+                                Console.WriteLine("the result of ur operation is: " + c);
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+        static public void submain_2() 
+        {
+            int b = 3;
+            int[] a = new int[b];
+        }
+    }    
+}
