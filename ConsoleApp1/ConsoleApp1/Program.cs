@@ -88,6 +88,11 @@ namespace ConsoleApp4
         static public void Array()
         {
 
+            /* string.IsNullOrEmpty(Console.ReadLine()) y string.IsNullOrWhiteSpace(Console.ReadLine())
+            para validar que el usuario no ingrese un string vacio o solo espacios en blanco, respectivamente.
+            toma esto en cuenta para cuando quieras hacer algo que verifique y apliques un bucle while o do-while
+            en este caso, no lo aplique ya que pude reparar el bucle de la forma que queria
+            sin embargo, esto puede implementarse a futuro...*/
             Console.WriteLine("Desea empezar? (s/n)"); char lector; 
             while (!char.TryParse(Console.ReadLine(), out lector) || (lector != 's' && lector != 'n') )
             {
