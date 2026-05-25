@@ -1,0 +1,7 @@
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Listas y arrays\Listas y arrays\bin\Debug\Listas y arrays.exe.config
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Listas y arrays\Listas y arrays\bin\Debug\Listas y arrays.exe
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Listas y arrays\Listas y arrays\bin\Debug\Listas y arrays.pdb
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Listas y arrays\Listas y arrays\obj\Debug\Listas y arrays.csproj.AssemblyReference.cache
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Listas y arrays\Listas y arrays\obj\Debug\Listas y arrays.csproj.CoreCompileInputs.cache
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Listas y arrays\Listas y arrays\obj\Debug\Listas y arrays.exe
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Listas y arrays\Listas y arrays\obj\Debug\Listas y arrays.pdb

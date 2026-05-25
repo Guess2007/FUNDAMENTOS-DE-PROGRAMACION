@@ -93,14 +93,12 @@ namespace ConsoleApp4
             {
                 Console.WriteLine("ingrese un dato valido");
             }
-            Console.Clear();
             if (lector == 's')
-            {
-                string l;
-                do
+            {               
+                Console.WriteLine("Desea empezar? (s/n)"); string l = Console.ReadLine();
+                if(l == "s")
                 {
-                    Console.WriteLine("Desea empezar? (s/n)"); l = Console.ReadLine();
-                    if (l == "s")
+                    do
                     {
                         Console.WriteLine("ingrese el tamaño del array: "); int n = int.Parse(Console.ReadLine());
                         int[] a = new int[n];
@@ -114,13 +112,13 @@ namespace ConsoleApp4
                         {
                             Console.WriteLine("elemento nº" + a[i] + ":");
                         }
-                    }
-                    else if (l == "n")
-                    {
-                        Console.WriteLine("Saliendo del sistema");
-                        Environment.Exit(20);
-                    }
-                } while (l == "s");                     
+                    } while (l == "s");
+                } 
+                else 
+                { 
+                    Console.WriteLine("Saliendo del sistema");
+                    Environment.Exit(20);
+                }              
             }
             else
             {

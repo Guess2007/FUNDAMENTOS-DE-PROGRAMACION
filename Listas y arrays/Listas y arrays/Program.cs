@@ -54,22 +54,32 @@ namespace ConsoleApp4
             {
                 case 1:
                     Console.WriteLine("Ejecutando proceso de lista numerica...");
-                    List<int> listaNumerica = new List<int>(n1);
-                    int reader1;
+                    List<int> listaNumerica = new List<int>();
+                    listaNumerica.Capacity = n1;
+
                     Console.WriteLine("ingrese sus elementos en la siguiente linea: ");
-                    while (!int.TryParse(Console.ReadLine(), out reader1))
-                    {
-                        Console.Write("Dato invalido, intente de nuevo...");
-                    }
                     for (int i = 0; i < n1; i++)
                     {
-                        Console.WriteLine("elemento nº" + (i + 1) + ":"); listaNumerica.Add(reader1);
+                        int reader1;
+                        Console.WriteLine("elemento nº" + (i + 1) + ":"); reader1 = int.Parse(Console.ReadLine());
+                        listaNumerica.Add(reader1);
                     }
-
                     foreach (int i in listaNumerica)
                     {
-                        Console.WriteLine("elemento nº" + (listaNumerica.IndexOf(i) + 1) + ": " + i);
+                        Console.WriteLine("elemento nº" + i + ": " + i);
                     }
+                    Console.WriteLine("Su lista ha sido creada exitosamente! ¿Desea realizar algun proceso extra? (s/n)");
+                    n = int.Parse(Console.ReadLine());
+                    if (n == 1) 
+                    {
+                        funciones_numericas(listaNumerica);
+                    }
+                    else if (n == 0)
+                    {
+                        Console.WriteLine("Gracias por usar el programa, vuelva pronto!");
+                        Environment.Exit(0);
+                    }
+
                     break;
                 case 2:
                     Console.WriteLine("Ejecutando proceso de lista de caracteres...");
@@ -85,11 +95,52 @@ namespace ConsoleApp4
             }
 
         }
+        static public List<int> funciones_numericas(List<int> lista) 
+        {
+            int n, n1;
+            Console.WriteLine("Bienvenido al menu de funciones extra, ¿que proceso desea ejecutar?" +
+                "\n1. insertar elementos \n2. buscar elementos\n3. modificar lista\n4. eliminar lista\n5. ordenar lista");
+            n = int.Parse(Console.ReadLine());
+            switch (n) 
+            { 
+                case 1:
+                    Console.WriteLine("ingrese el dato a insertar: "); n = int.Parse(Console.ReadLine());
+                    Console.WriteLine("ingrese la posicion a insertar: "); n1 = int.Parse(Console.ReadLine());
+                    lista.Insert(n1, n);
+                    Console.WriteLine("Lista actualizada:");
+                    foreach (int i in lista)
+                    {
+                        Console.WriteLine("elemento nº" + i + ": " + i);
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("ingrese el dato a buscar: "); n = int.Parse(Console.ReadLine());
+                    var result = lista.Find(x => x == n);
+                    if (result == null)
+                    {
+                        Console.WriteLine("Elemento no encontrado.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Elemento encontrado: " + result);
+                        return lista;                       
+                    }
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                default:
+                    break;
+            }
+            return lista;
+        }
         static public void Array()
         {
-
-            Console.WriteLine("Desea empezar? (s/n)"); char lector; 
-            while (!char.TryParse(Console.ReadLine(), out lector) || (lector != 's' && lector != 'n') )
+            Console.WriteLine("Desea empezar? (s/n)"); char lector;
+            while (!char.TryParse(Console.ReadLine(), out lector) || (lector != 's' && lector != 'n'))
             {
                 Console.WriteLine("ingrese un dato valido");
             }
@@ -120,13 +171,13 @@ namespace ConsoleApp4
                         Console.WriteLine("Saliendo del sistema");
                         Environment.Exit(20);
                     }
-                } while (l == "s");                     
+                } while (l == "s");
             }
             else
             {
                 Console.WriteLine("Saliendo del sistema");
                 Environment.Exit(20);
-            }           
+            }
         }
     }
 }
