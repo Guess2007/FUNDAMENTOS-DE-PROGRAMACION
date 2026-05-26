@@ -1,0 +1,7 @@
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\bin\Debug\Codigo para el proyecto final ─U─.exe.config
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\bin\Debug\Codigo para el proyecto final ─U─.exe
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\bin\Debug\Codigo para el proyecto final ─U─.pdb
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\obj\Debug\Codigo para el proyecto final ─U─.csproj.AssemblyReference.cache
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\obj\Debug\Codigo para el proyecto final ─U─.csproj.CoreCompileInputs.cache
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\obj\Debug\Codigo para el proyecto final ─U─.exe
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\obj\Debug\Codigo para el proyecto final ─U─.pdb
