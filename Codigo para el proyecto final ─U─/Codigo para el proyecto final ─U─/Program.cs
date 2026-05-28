@@ -145,6 +145,7 @@ namespace Codigo_para_el_proyecto_final__U_
                     Console.ReadKey();
                     break;
                 case 2:
+                    Console.WriteLine("");
                     Console.WriteLine();
                     break;
                 case 3:
