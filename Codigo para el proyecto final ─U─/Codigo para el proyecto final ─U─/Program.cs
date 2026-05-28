@@ -15,32 +15,32 @@ namespace Codigo_para_el_proyecto_final__U_
             Console.WriteLine("Bienvenido al login...");
             Console.WriteLine("Para empezar, registre el numero de trabajadores: "); int n = int.Parse(Console.ReadLine());
             string[,] trabajadores = new string[n + 1, 4];
-            trabajadores[0, 0] = "Nombre";
-            trabajadores[0, 2] = "contraseña";
+            trabajadores[0, 0] = "Nombre";           
             trabajadores[0, 1] = "Cargo";
+            trabajadores[0, 2] = "contraseña";
             trabajadores[0, 3] = "salario";
-            for (int i = 0; i < n; i++) 
+            for (int i = 1; i < n; i++) 
             {
                 Console.WriteLine("Ingrese el " + trabajadores[0, 0] + " del trabajador nº " + (i + 1) + ": ");
-                trabajadores[i + 1, 0] = Console.ReadLine();
+                trabajadores[i, 0] = Console.ReadLine();
             }
-            for (int i = 0; i < n; i++)
+            for (int i = 1; i < n; i++)
             {
                 Console.WriteLine("Ingrese el " + trabajadores[0, 1] + " del trabajador nº " + (i + 1) + ": ");
-                trabajadores[i + 1, 1] = Console.ReadLine();
+                trabajadores[i, 1] = Console.ReadLine();
             }
-            for (int i = 0; i < n; i++)
+            for (int i = 1; i < n; i++)
             {
                 Console.WriteLine("Ingrese el " + trabajadores[0, 2] + " del trabajador nº " + (i + 1) + ": ");
-                trabajadores[i + 1, 2] = Convert.ToString(Console.ReadLine());
+                trabajadores[i, 2] = Convert.ToString(Console.ReadLine());
             }
             Console.WriteLine("Lista actual de registros...");
             
-            for (int i = 0; i < n; i++) 
+            for (int i = 1; i < n; i++) 
             {
-                Console.WriteLine("trabajador nº " + (i + 1) + ": " + trabajadores[i + 1, 0]);
-                Console.WriteLine("Cargo: " + trabajadores[i + 1, 1]);
-                Console.WriteLine("Salario: " + trabajadores[i + 1, 2]); 
+                Console.WriteLine("trabajador nº " + (i + 1) + ": " + trabajadores[i, 0]);
+                Console.WriteLine("Cargo: " + trabajadores[i, 1]);
+                Console.WriteLine("Salario: " + trabajadores[i, 2]); 
             }
             Console.WriteLine("Trabajadores registrados exitosamente...");
             Console.Clear();
@@ -89,13 +89,50 @@ namespace Codigo_para_el_proyecto_final__U_
             
             Console.WriteLine("Bienvenido al sistema de administradores...");
             Console.WriteLine("Esta es su lista de trabajadores registrados...");
-            for (int i = 0; i < n; i++)
+            for (int i = 1; i < n; i++)
             {
-                Console.WriteLine("trabajador nº " + (i + 1) + ": " + a[i + 1, 0]);
-                Console.WriteLine("Cargo: " + a[i + 1, 1]);
-                Console.WriteLine("Salario: " + a[i + 1, 2]);
+                Console.WriteLine("trabajador nº " + (i + 1) + ": " + a[i, 0]);
+                Console.WriteLine("Cargo: " + a[i, 1]);
+                Console.WriteLine("contraseña: " + a[i, 2]);
             }
-        } 
+            Console.WriteLine("¿Desea ejecutar alguna accion extra? (s/n)"); char reader = char.Parse(Console.ReadLine());
+            if (reader == 's') 
+            {
+                Console.WriteLine("¿Que operacion desea ejecutar?");
+                Console.WriteLine("1. Gestionar almacen. \n2. Ajuste de recibos. \n3. Asignacion de salarios. \n4. Vendedor del mes. \n5. Renovacion de contratos.");
+                int opcionElegida = int.Parse(Console.ReadLine());
+            }
+            else if (reader == 'n') 
+            {
+                Console.WriteLine("Cerrando el sistema, presione enter para cerrar la consola...");
+                Console.ReadKey();
+            }
+                
+        }
+        static public void funciones_administrador(int n) 
+        {
+            switch (n)
+            {
+                case 1:
+                    Console.WriteLine();
+                    break;
+                case 2:
+                    Console.WriteLine();
+                    break;
+                case 3:
+                    Console.WriteLine();
+                    break;
+                case 4:
+                    Console.WriteLine();
+                    break;
+                case 5:
+                    Console.WriteLine();
+                    break;
+                default:
+                    Console.WriteLine();
+                    break;
+            }
+        }
 
     }
 }
