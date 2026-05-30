@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -81,14 +82,17 @@ namespace Codigo_para_el_proyecto_final__U_
                     }
                 }
             }
-
+            //Si el admin nunca ingresa al sistema, ¿la lista de productos existira en caso de que el vendedor ingrese al sistema?
+            //No, por lo tanto, el vendedor no podra acceder a la lista de productos, lo que es un gran problema,
+            //ya que el vendedor necesita esa informacion para vender los productos.
         }
         static public void sistema_vendedores()
         {
+            Console.WriteLine();
         }
         static public void sistema_administradores(int n, string[,] a)
         {
-
+            Console.Clear();
             Console.WriteLine("Bienvenido al sistema de administradores...");
             Console.WriteLine("Esta es su lista de trabajadores registrados...");
             for (int i = 0; i < n; i++)
@@ -102,7 +106,11 @@ namespace Codigo_para_el_proyecto_final__U_
             {
                 Console.WriteLine("¿Que operacion desea ejecutar?");
                 Console.WriteLine("1. Gestionar almacen. \n2. Ajuste de recibos. \n3. Asignacion de salarios. \n4. Vendedor del mes. \n5. Renovacion de contratos.");
+                //Las dos ultimas funciones son redudantes y podria simplemente ponerlas en la tercera funcion, igualmente, podria renombrar la funcion como gestion de empleados
+                //la idea sera esa, reajustar y en base a la valoracion del empleado, asignar salario, posteriormente y en base a la segunda, considerar quienes se quedan
+                // y quienes se van.
                 int opcionElegida = int.Parse(Console.ReadLine());
+                Console.Clear();
                 funciones_administrador(opcionElegida);
             }
             else if (reader == 'n')
@@ -120,10 +128,7 @@ namespace Codigo_para_el_proyecto_final__U_
                     Console.WriteLine("Indicar la cantidad de productos a su disposicion: ");
                     int numeroproductos = int.Parse(Console.ReadLine());
                     string[, ] estantes = new string [numeroproductos + 1,4];
-                    estantes[0, 0] = "producto";
-                    estantes[0, 1] = "tipo";
-                    estantes[0, 2] = "precio";
-                    estantes[0, 3] = "cantidad";
+                    estantes[0, 0] = "producto"; estantes[0, 1] = "tipo"; estantes[0, 2] = "precio"; estantes[0, 3] = "cantidad";
                     Console.WriteLine("Indica los productos que dispondran tus estantes: ");
                     for (int i = 0; i < numeroproductos; i++)
                     {
@@ -139,10 +144,28 @@ namespace Codigo_para_el_proyecto_final__U_
                     Console.WriteLine("Esta es su lista de productos actual: ");
                     for (int i = 1; i < numeroproductos + 1; i++)
                     {
-                        Console.WriteLine($"Producto n° {i}: {estantes[i, 0]}\nTipo: {estantes[i, 1]}\nPrecio: {estantes[i, 2]}\nCantidad: {estantes[i, 3]}");
+                        Console.WriteLine($"Producto n° {i}: {estantes[i, 0]}\nTipo: {estantes[i, 1]}\nPrecio: {estantes[i, 2]}\nCantidad: {estantes[i, 3]}");                        
                     }
-                    Console.WriteLine("Lista terminada...");
-                    Console.ReadKey();
+                    int largoantiguo = estantes.GetLength(0);
+                    int anchoantiguo = estantes.GetLength(1);
+                    Console.WriteLine($"El largo de la matriz es: {largoantiguo} y el ancho es: {anchoantiguo}");
+                    Console.WriteLine("Lista terminada..."); Console.ReadKey();
+                    Console.WriteLine("¿Desea agregar un producto o desea eliminar uno? (s/n)");
+                    string reader = Console.ReadLine();
+                    if (reader == "agregar")
+                    {
+                        Console.WriteLine("Indique la cantidad de productos a agregar..."); int nuevolargo = int.Parse(Console.ReadLine());
+                        string[,] productosactuales = new string[nuevolargo,];
+                      
+                    }
+                    else if (reader == "eliminar")
+                    {
+                    }
+                    else
+                    {
+                        Console.WriteLine("Opcion invalida, cerrando sistema...");
+                        Console.ReadKey();
+                    }
                     break;
                 case 2:
                     Console.WriteLine("");
@@ -151,16 +174,24 @@ namespace Codigo_para_el_proyecto_final__U_
                 case 3:
                     Console.WriteLine();
                     break;
-                case 4:
-                    Console.WriteLine();
-                    break;
-                case 5:
-                    Console.WriteLine();
-                    break;
                 default:
                     Console.WriteLine();
                     break;
             }
+        }
+
+
+        public static T[,] ResizeArray<T>(T[,] original, int newWidth, int newHeight, int offsetX = 0, int offsetY = 0)
+        {
+            T[,] newArray = new T[newWidth, newHeight];
+            int width = original.GetLength(0);
+            int height = original.GetLength(1);
+            for (int x = 0; x < width; x++)
+            {
+                Array.Copy(original, x * height, newArray, (x + offsetX) * newHeight + offsetY, height);
+            }
+
+            return newArray;
         }
 
     }
