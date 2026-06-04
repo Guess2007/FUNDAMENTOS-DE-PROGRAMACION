@@ -1,6 +1,5 @@
 CREATE DATABASE AgroGlobal_System;
 USE AgroGlobal_System;
-
 -- ======================================================
 -- SECCIÓN 1: MAESTROS Y PRODUCCIÓN (Trazabilidad)
 -- ======================================================
@@ -18,12 +17,25 @@ CREATE TABLE Lotes (
     lote_id INT PRIMARY KEY AUTO_INCREMENT,
     codigo_trazabilidad VARCHAR(50) UNIQUE, 
     fecha_cosecha DATE,
-    finca_origen VARCHAR(100),
-    certificaciones VARCHAR(255), 
+    finca_origen VARCHAR(100), 
     estado_maduracion ENUM('Verde', 'En proceso', 'Listo', 'Pasado'),
     producto_id INT,
     FOREIGN KEY (producto_id) REFERENCES Productos(producto_id)
 );
+
+CREATE TABLE Certificaciones (
+    certificacion_id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_certificacion VARCHAR(100) UNIQUE
+);
+
+CREATE TABLE LoteCertificaciones (
+    lote_id INT,
+    certificacion_id INT,
+    PRIMARY KEY (lote_id, certificacion_id),
+    FOREIGN KEY (lote_id) REFERENCES Lotes(lote_id),
+    FOREIGN KEY (certificacion_id) REFERENCES Certificaciones(certificacion_id)
+);
+
 
 -- ======================================================
 -- SECCIÓN 2: CANALES Y TRANSACCIONES (Negocio B2B)
@@ -110,3 +122,10 @@ CREATE TABLE InteraccionesQR (
     FOREIGN KEY (consumidor_id) REFERENCES ConsumidoresFinales(consumidor_id),
     FOREIGN KEY (lote_id) REFERENCES Lotes(lote_id)
 );
+
+
+
+
+
+
+
