@@ -1,7 +1,8 @@
+/*barra de navegacion*/
 header{
     display: flex;
     height: 70px;
-    background-color: grey;
+
     justify-content: space-between;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
     margin: 0; border-radius: 15px;
@@ -24,24 +25,27 @@ header{
     border: 5px solid darkcyan; border-radius: 30px;
 }
 nav{
-    padding-top: 13%; padding-left: 3px;
+    margin-top: 25px;
+    border: 3px solid darkcyan; border-radius: 10px;
+    background-color: black;
 }
 nav a{
     justify-content: space-between 5px;
-    background-color: whitesmoke;
-    border: 3px solid darkcyan; border-radius: 10px;
     padding: 2px; padding-right: 5px;
     text-decoration: none;
     color: rgb(15, 97, 97);
 }
 nav a:hover{
-    color: white;
+      background-color: black; 
+      border-radius: 9px; 
+      color: white;
 }
+/*carrusel de imagenes*/
 .slider-box{
     border-radius: 30px;
-    height: 750px;
-    width: auto;
-    margin: 0px auto 0;
+    height: auto;
+    width: 1280;
+    margin: 0px 5% 0;
     padding: 0;
     box-sizing: border-box;
     overflow: hidden;
@@ -49,8 +53,8 @@ nav a:hover{
 .slider-box ul{
     display: flex;
     padding: 0;
-    width: 400%;
-    animation: slide 20s infinite alternate ease-in-out
+    width: 300%;
+    animation: slide 15s infinite alternate ease-in-out
 }
 .slider-box li{
     width: 100%;
@@ -58,40 +62,38 @@ nav a:hover{
     position: relative;
 }
 .texto{
-    background-color: white;
     position: absolute;
-    text-align:left;
-    padding: 0 250px;
-    padding-left: 50px;
-    padding-bottom: 10px;
-    top: 250px;
-    color: rgb(30, 7, 73);
+    margin-right: 50%;
+    padding-right: 25%;
+    padding: 0 150px;
+    top: 0%;
+    color: white;
 }
 .texto h2{
-    font-size: 45px;
-    margin-bottom: 35px;
+        text-align: center;
+        font-size: 15px;
+        margin: 25%;
+        margin-bottom: 35px;
 }
 .texto p{
-    text-align: left;
+        text-align: center;
+        margin-bottom: 105px;
 }
 .slider-box img{
     width: 100%;
+    mask-image: linear-gradient(to left, black 60%, transparent)
 }
 @keyframes slide{
     0%{margin-left: 0%;}
     20%{margin-left: 0%;}
-    0%{margin-right: 30%;}
-    20%{margin-right: 30%;}
 
-    25%{margin-left: -135%;}
-    45%{margin-left: -135%;}
+    30%{margin-left: -100%;}
+    70%{margin-left: -100%;}
 
-    50%{margin-left: -270%;}
-    70%{margin-left: -270%;}
-
-    75%{margin-left: -300%;}
-    100%{margin-left: -300%;}
+    80%{margin-left: -200%;}
+    100%{margin-left: -200%;}
 }
+/*secciones*/
 body{
     margin: 5px;
     background-color: black;
@@ -107,13 +109,19 @@ html,main{
 header a:hover{
     color: white;
 }
-.Inicio{
-    padding: 100px;
-    background-color: rgb(156, 10, 10);
-}
 .Calculadora{
-    padding: 100px;
+    padding: 200px;
     background-color: bisque;
+    display: flex;
+}
+.lista-personajes{
+    padding: 100px;
+    border: 5px solid black;
+    display: block;
+}
+.main-character{
+    border: 5px solid black;
+    padding: 50px, 100px;  
 }
 .Creditos{
     padding: 100px;
