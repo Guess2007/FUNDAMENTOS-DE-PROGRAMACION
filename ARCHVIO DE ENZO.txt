@@ -1,0 +1,94 @@
+package pe.upn.sistema_libros.controller.logic;
+
+import android.content.Context;
+
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import pe.upn.sistema_libros.controller.dao.PrestamoDao;
+import pe.upn.sistema_libros.model.database.AppDatabase;
+import pe.upn.sistema_libros.model.entities.Prestamo;
+
+public class PrestamoRepository {
+    private PrestamoDao prestamoDao;
+    private ExecutorService executorService;
+
+    public PrestamoRepository(Context context) {
+        AppDatabase db = AppDatabase.getInstancia(context);
+        prestamoDao = db.prestamoDao();
+        executorService = Executors.newFixedThreadPool(4);
+    }
+
+    // Operaciones de Gestión
+
+    public void registrarPrestamo(Prestamo prestamo) {
+        executorService.execute(() -> prestamoDao.registrarPrestamo(prestamo));
+    }
+
+    // Al devolver, se actualiza la fecha_devolucion_real
+    public void registrarDevolucion(Prestamo prestamo) {
+        executorService.execute(() -> {
+            // Aquí podrías añadir lógica extra antes de actualizar,
+            // como verificar si la fecha real es mayor a la prevista para activar una multa.
+            prestamoDao.actualizar(prestamo);
+        });
+    }
+
+    // Reportar todos los préstamos
+    public void obtenerTodos(RepositoryCallback<List<Prestamo>> callback) {
+        executorService.execute(() -> {
+            List<Prestamo> lista = prestamoDao.obtenerTodos();
+            callback.onComplete(lista);
+        });
+    }
+
+    // Reportar préstamos en un intervalo de fecha
+    public void obtenerPrestamosPorRango(long inicio, long fin, RepositoryCallback<List<Prestamo>> callback) {
+        executorService.execute(() -> {
+            List<Prestamo> lista = prestamoDao.obtenerPrestamosPorRango(inicio, fin);
+            callback.onComplete(lista);
+        });
+    }
+
+    public interface RepositoryCallback<T> {
+        void onComplete(T result);
+    }
+}
+
+package pe.upn.sistema_libros.controller.dao;
+
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.Query;
+
+import java.util.List;
+
+import pe.upn.sistema_libros.model.entities.Bibliotecario;
+import pe.upn.sistema_libros.model.entities.Prestamo;
+
+@Dao
+public interface PrestamoDao {
+    @Insert
+    void registrarPrestamo(Prestamo prestamo);
+
+    // Reportar libros en intervalo de fechas
+    @Query("SELECT * FROM prestamos WHERE fecha_salida BETWEEN :inicio AND :fin")
+    List<Prestamo> obtenerPrestamosPorRango(long inicio, long fin);
+
+    // Bibliotecarios con más préstamos
+    @Query("SELECT b.* FROM bibliotecarios b " +
+            "INNER JOIN prestamos p ON b.id_bibliotecario = p.id_bibliotecario " +
+            "GROUP BY b.id_bibliotecario " +
+            "ORDER BY COUNT(p.id_prestamo) DESC")
+    List<Bibliotecario> obtenerBibliotecariosTop();
+}
+HEAD
+
+
+
+activar activar activar activar activar activar activar activar activar activar
+
+
+
+Albion online es un mmorpg no lineal, en el que escribes tu propia historia sin limitarte a seguir un camino prefijado, explora un amplio mundo abierto con 5 biomas únicos, todo cuanto hagas tendrá su repercusión en el mundo, con la economía orientada al jugador de Albión, los jugadores crean prácticamente todo el equipo a partir de los recursos que consiguen, el equipo que llevas define quien eres, cambia de arma y armadura para pasar de caballero a mago, o juega como una mezcla de ambas clases, aventúrate en el mundo abierto frente a los habitantes y las criaturas de Albión, inicia expediciones o adéntrate en mazmorras en las que encontrarás enemigos aún más difíciles, enfréntate a otros jugadores en encuentros en el mundo abierto, lucha por los territorios o por ciudades enteras en batallas tácticas, relájate en tu isla privada, donde podrás construir un hogar cultivar cosechas y criar animales, únete a un gremio, todo es mejor cuando se trabaja en grupo, adéntrate ya en el mundo de Albión y escribe tu propia historia
