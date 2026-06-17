@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada a un ensamblado.
-[assembly: AssemblyTitle("Calculadora Genshin")]
+[assembly: AssemblyTitle("Consola Genshin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Calculadora Genshin")]
+[assembly: AssemblyProduct("Consola Genshin")]
 [assembly: AssemblyCopyright("Copyright ©  2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("33bec81a-f78d-4792-98a4-4af68c427ce7")]
+[assembly: Guid("b4e73ef0-fec1-4709-a9b0-565674e7d483")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
