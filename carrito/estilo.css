@@ -1,0 +1,6 @@
+.products, .cart {
+    margin: 20px;
+}
+.product, .cart-item {
+    margin-bottom: 10px;
+}

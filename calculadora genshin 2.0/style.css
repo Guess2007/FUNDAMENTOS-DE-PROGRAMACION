@@ -27,7 +27,7 @@ header{
 nav{
     margin-top: 25px;
     border: 3px solid darkcyan; border-radius: 10px;
-    background-color: black;
+    background: transparent;
 }
 nav a{
     justify-content: space-between 5px;
@@ -110,10 +110,34 @@ header a:hover{
     color: white;
 }
 .Calculadora{
+    background-color: white;
     padding: 200px;
+    text-align: center;
+}
+.Acceso{
+    color: white;
+    text-decoration: none;
+    border-style: solid;
+    background-color: blue;
+    padding: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    top: 100%;
+}
+.Acceso:hover{
+    background-color: rgba(0, 0, 255, 0.418);
+}
+#Calculadora_2{
+    display: block;
+        padding: 200px;
     background-color: bisque;
     display: flex;
 }
+/*
+#Calculadora_2.visible{
+
+}
+*/
 .lista-personajes{
     padding: 100px;
     border: 5px solid black;
@@ -126,4 +150,48 @@ header a:hover{
 .Creditos{
     padding: 100px;
     background-color: beige;
+}
+/*important part*/
+.lista_personajes{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    list-style: none;
+    padding: 0; 
+}
+.lista_personajes img{
+    height: 50px;
+}
+.personajes_ciclos img{
+    height: 50px;
+    gap: 20px;
+    padding: 0;
+}
+/*navegacion entre paginas*/
+@view-transition{
+    navigation; auto;
+}
+
+::view-transition-group(page-content){
+    animation-duration: 30s;
+    animation-timing-function: ease;
+}
+
+::view-transition-old(page-content){
+    animation-name: slide-out;
+}
+
+::view-transition-new(page-content){
+    animation-name: slide-in;
+}
+@keyframes slide-out {
+    to{
+        translate: -100vw;
+    }
+}
+@keyframes slide-in{
+    to {
+        translate: 100vw;
+
+    }
 }
