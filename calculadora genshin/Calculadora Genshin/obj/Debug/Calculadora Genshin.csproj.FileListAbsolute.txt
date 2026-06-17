@@ -1,0 +1,7 @@
+C:\Users\EeAa\source\repos\Calculadora Genshin\Calculadora Genshin\bin\Debug\Calculadora Genshin.exe.config
+C:\Users\EeAa\source\repos\Calculadora Genshin\Calculadora Genshin\bin\Debug\Calculadora Genshin.exe
+C:\Users\EeAa\source\repos\Calculadora Genshin\Calculadora Genshin\bin\Debug\Calculadora Genshin.pdb
+C:\Users\EeAa\source\repos\Calculadora Genshin\Calculadora Genshin\obj\Debug\Calculadora Genshin.csproj.AssemblyReference.cache
+C:\Users\EeAa\source\repos\Calculadora Genshin\Calculadora Genshin\obj\Debug\Calculadora Genshin.csproj.CoreCompileInputs.cache
+C:\Users\EeAa\source\repos\Calculadora Genshin\Calculadora Genshin\obj\Debug\Calculadora Genshin.exe
+C:\Users\EeAa\source\repos\Calculadora Genshin\Calculadora Genshin\obj\Debug\Calculadora Genshin.pdb
