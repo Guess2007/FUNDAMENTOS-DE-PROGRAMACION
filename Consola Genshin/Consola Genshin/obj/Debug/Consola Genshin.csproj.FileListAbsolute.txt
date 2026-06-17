@@ -1,0 +1,7 @@
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Consola Genshin\Consola Genshin\bin\Debug\Consola Genshin.exe.config
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Consola Genshin\Consola Genshin\bin\Debug\Consola Genshin.exe
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Consola Genshin\Consola Genshin\bin\Debug\Consola Genshin.pdb
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Consola Genshin\Consola Genshin\obj\Debug\Consola Genshin.csproj.AssemblyReference.cache
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Consola Genshin\Consola Genshin\obj\Debug\Consola Genshin.csproj.CoreCompileInputs.cache
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Consola Genshin\Consola Genshin\obj\Debug\Consola Genshin.exe
+C:\Users\Ryzen\OneDrive\Escritorio\Repositorios\FUNDAMENTOS-DE-PROGRAMACION\Consola Genshin\Consola Genshin\obj\Debug\Consola Genshin.pdb
