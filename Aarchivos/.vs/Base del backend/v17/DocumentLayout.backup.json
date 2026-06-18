@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Asus\\source\\repos\\Base del backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{89E0675F-B0F6-49A2-83F1-93B4D2215F16}|Base del backend\\Base del backend.csproj|c:\\users\\asus\\source\\repos\\base del backend\\base del backend\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E0675F-B0F6-49A2-83F1-93B4D2215F16}|Base del backend\\Base del backend.csproj|solutionrelative:base del backend\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E0675F-B0F6-49A2-83F1-93B4D2215F16}|Base del backend\\Base del backend.csproj|c:\\users\\asus\\source\\repos\\base del backend\\base del backend\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E0675F-B0F6-49A2-83F1-93B4D2215F16}|Base del backend\\Base del backend.csproj|solutionrelative:base del backend\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E0675F-B0F6-49A2-83F1-93B4D2215F16}|Base del backend\\Base del backend.csproj|c:\\users\\asus\\source\\repos\\base del backend\\base del backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89E0675F-B0F6-49A2-83F1-93B4D2215F16}|Base del backend\\Base del backend.csproj|solutionrelative:base del backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89E0675F-B0F6-49A2-83F1-93B4D2215F16}|Base del backend\\Base del backend.csproj|c:\\users\\asus\\source\\repos\\base del backend\\base del backend\\base del backend.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{89E0675F-B0F6-49A2-83F1-93B4D2215F16}|Base del backend\\Base del backend.csproj|solutionrelative:base del backend\\base del backend.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\source\\repos\\Base del backend\\Base del backend\\Form1.cs",
+              "RelativeDocumentMoniker": "Base del backend\\Form1.cs",
+              "ToolTip": "C:\\Users\\Asus\\source\\repos\\Base del backend\\Base del backend\\Form1.cs",
+              "RelativeToolTip": "Base del backend\\Form1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T11:44:19.891Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Base del backend",
+              "DocumentMoniker": "C:\\Users\\Asus\\source\\repos\\Base del backend\\Base del backend\\Base del backend.csproj",
+              "RelativeDocumentMoniker": "Base del backend\\Base del backend.csproj",
+              "ToolTip": "C:\\Users\\Asus\\source\\repos\\Base del backend\\Base del backend\\Base del backend.csproj",
+              "RelativeToolTip": "Base del backend\\Base del backend.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-09T11:42:50.951Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\source\\repos\\Base del backend\\Base del backend\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "Base del backend\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\Asus\\source\\repos\\Base del backend\\Base del backend\\Form1.Designer.cs",
+              "RelativeToolTip": "Base del backend\\Form1.Designer.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAewGAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T11:41:35.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\source\\repos\\Base del backend\\Base del backend\\Program.cs",
+              "RelativeDocumentMoniker": "Base del backend\\Program.cs",
+              "ToolTip": "C:\\Users\\Asus\\source\\repos\\Base del backend\\Base del backend\\Program.cs",
+              "RelativeToolTip": "Base del backend\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T11:41:45.771Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
