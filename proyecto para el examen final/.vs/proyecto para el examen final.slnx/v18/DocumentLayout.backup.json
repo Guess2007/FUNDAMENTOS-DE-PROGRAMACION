@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Ryzen\\OneDrive\\Escritorio\\Repositorios\\FUNDAMENTOS-DE-PROGRAMACION\\proyecto para el examen final\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5DC9FB37-107F-40DB-9DE9-D9E4D9064AE9}|proyecto para el examen final\\proyecto para el examen final.csproj|c:\\users\\ryzen\\onedrive\\escritorio\\repositorios\\fundamentos-de-programacion\\proyecto para el examen final\\proyecto para el examen final\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5DC9FB37-107F-40DB-9DE9-D9E4D9064AE9}|proyecto para el examen final\\proyecto para el examen final.csproj|solutionrelative:proyecto para el examen final\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Ryzen\\OneDrive\\Escritorio\\Repositorios\\FUNDAMENTOS-DE-PROGRAMACION\\proyecto para el examen final\\proyecto para el examen final\\Program.cs",
+              "RelativeDocumentMoniker": "proyecto para el examen final\\Program.cs",
+              "ToolTip": "C:\\Users\\Ryzen\\OneDrive\\Escritorio\\Repositorios\\FUNDAMENTOS-DE-PROGRAMACION\\proyecto para el examen final\\proyecto para el examen final\\Program.cs",
+              "RelativeToolTip": "proyecto para el examen final\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-22T23:48:55.685Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
