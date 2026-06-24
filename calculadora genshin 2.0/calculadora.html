@@ -7,38 +7,201 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="navbar-container">
-    </div>
+    <div id="navbar-container"></div>
     <section id="Calculadora" class="Calculadora">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut non inventore fugiat repellendus, ea atque autem voluptates quas dicta aperiam, repudiandae magni quos exercitationem rem pariatur accusantium aliquam culpa! Quo</p>
         <a href="Calculadora_2.visible" onclick="toggleSeccion()" class="Acceso">Press to continue</a>
     </section>
     <section id= "Calculadora_2" class="Calculadora_2">
-        <div class="lista-personajes">
-            <ul class="lista_personajes">
-                <p><img src="imagenes/ado-removebg-preview.png" alt=""></p>
-                <p><img src="imagenes/ado-removebg-preview.png" alt=""></p>
-                <p><img src="imagenes/ado-removebg-preview.png" alt=""></p>
-                <p><img src="imagenes/ado-removebg-preview.png" alt=""></p>
-                <p><img src="imagenes/ado-removebg-preview.png" alt=""></p>
-                <p><img src="imagenes/ado-removebg-preview.png" alt=""></p>
-                <p><img src="imagenes/ado-removebg-preview.png" alt=""></p>
-                <p><img src="imagenes/ado-removebg-preview.png" alt=""></p>
-                <p><img src="imagenes/ado-removebg-preview.png" alt=""></p>
-                <p><img src="imagenes/ado-removebg-preview.png" alt=""></p>
-            </ul>
-        </div>
-        <aside class="main-character">
+        <div id="screenHome">
+
+    <header>
+        <h1>⚔️ Calculadora de Rotación</h1>
+        <p>Versión 1.0</p>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <div class="card-title">Bienvenido</div>
+
             <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi ipsum voluptatibus impedit corporis fugiat eum blanditiis unde deserunt? Vero aspernatur est dicta exercitationem saepe ad repudiandae, dolor fugiat hic soluta?
+                Esta herramienta permite estimar el daño total de una
+                rotación en Genshin Impact utilizando estadísticas,
+                reacciones elementales y efectos de soporte.
             </p>
-            <img src="imagenes/ado-removebg-preview.png" alt="">
-            <ul class="personajes_ciclos">
-                <img src="imagenes/ado-removebg-preview.png" alt="">
-                <img src="imagenes/ado-removebg-preview.png" alt="">
-                <img src="imagenes/ado-removebg-preview.png" alt="">
+
+            <br>
+
+            <button class="btn btn-primary"
+                    onclick="showScreen('calculator')">
+                Iniciar
+            </button>
+
+        </div>
+
+    </div>
+</div>
+<div id="screenAbout" style="display:none">
+
+    <header>
+        <h1>📖 Acerca de Genshin </h1>
+    </header>
+
+    <!-- Agregamos este contenedor padre con la clase grid-2 -->
+    
+
+      <div class = "columns">
+        <div class="container">
+        <div class="card">
+            <div class="card-title">
+                Información de el Programa
+            </div>
+            <p>
+                Calculadora desarrollada para analizar rotaciones,
+                daño promedio y reacciones elementales.
+            </p>
+            <br>
+            <h3>Funciones actuales</h3>
+            <ul>
+                <li>Hasta 4 personajes... o mas gracias a un bug</li>
+                <li>Reacciones Melt y Vaporize, no considera estado de congelacion</li>
+                <li>Reacciones Transformativas, no disponibles reacciones lunares</li>
+                <li>Buffs de soporte, aunque no se muestra en la etiqueta todos los buff permanecen</li>
+                <li>Daño promedio y crítico, confio en que esto no tienen fallas</li>
             </ul>
-        </aside>
+            <br>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="card">
+            <div class="card-title">
+                Tutorial
+            </div>
+            <p>
+                Para usar la calculadora necesitaras sumar las estadisticas base con la de 
+                tus artefactos y arma, ademas de saber los porcentajes de de ataque y el 
+                tipo de escala que usan sus habilidades, con eso listo solo debes rellenar 
+                los datos en las casillas que corresponden, no importa si cambias de personaje 
+                mientras estes llenando las casillas los datos no se borraran, cada casilla 
+                tiene valores de ejemplo para ayudarte con el ingreso de datos.
+            </p>
+            <br>
+            <h3>Recuerda preparar todo antes del calculo</h3>
+            <br>
+        </div>  
+      </div>
+      </div>
+          <div class="container">
+            <div class="card">
+              <div class="card-title">
+                Genshin Lore - Historia del mundo
+              </div>
+              <h3>Viejo Mundo</h3>
+              <br>
+              <p>
+                Todos los seres elementales vienen del Mundo de la Luz, también
+                conocido como el Mundo de los Dragartos. Los Dragones y los Dragartos 
+                son la especie dominante, guiados por los Siete Soberanos liderados por Nibelungo.
+              </p>
+              <br>
+              <p>
+                Seutervoinen, una cronista que viajaba por el cosmos y que meditó por diez milenios
+                 sintió la presencia de Nibelungo en Teyvat. Ella le cuenta que el mundo sería destruido 
+                 y le advierte que se vaya con ella. Sin embargo, se negó a abandonar a su gente y en 
+                 vez de eso le pide que guíe a los dragones a las estrellas, llevándolos a desarrollar
+                  avanzada tecnología espacial.
+              </p>
+              <br>
+              <p>
+                Nibelungo crea a las Tres Lunas de Teyvat y las eleva al cielo para gobernar el mundo en
+                 su ausencia mientras él se va de Teyvat.
+              </p>
+            <br>
+            <button class="btn btn-primary" onclick="showScreen('calculator')">
+                Volver
+            </button>
+            <br>
+        </div>
+    </div>
+
+   <!-- Cierre del contenedor grid-2 -->
+
+
+</div>
+<div id="screenCalculator" style="display:none">
+
+<header>
+  <h1>⚔️ Calculadora de Rotación v2.0</h1>
+  <p>Melt · Vaporize · Soporte · Maestría Elemental · Reducción de RES</p>
+</header>
+
+ <div class="container">
+
+  <!-- ── Configuración general ── -->
+  <div class="card">
+    <div class="card-title">🌐 Configuración de la Rotación</div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Nombre de la rotación</label>
+        <input type="text" id="rotName" value="Mi Rotación" placeholder="ejem: Vape Team"/>
+      </div>
+      <div class="field"><!-- spacer --></div>
+      <div class="field">
+        <label>Nivel del enemigo</label>
+        <input type="number" id="enemyLevel" value="90" min="1" max="100"/>
+      </div>
+      <div class="field">
+        <label>Resistencia del enemigo (%)</label>
+        <input type="number" id="enemyRes" value="10" min="-100" max="100" step="0.1"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Personajes ── -->
+  <div class="card">
+    <div class="characters-header">
+      <div class="card-title" style="margin-bottom:0">👥 Personajes</div>
+      <button class="btn btn-accent" id="btnAddChar">+ Agregar personaje</button>
+    </div>
+
+    <div class="char-tabs" id="charTabs"></div>
+    <div id="charForms"></div>
+  </div>
+
+  <!-- ── Calcular ── -->
+  <div class="calc-row">
+    <button class="btn btn-calc" id="btnCalc">💥 Calcular Rotación</button>
+  </div>
+
+  <!-- ── Resultados ── -->
+  <div id="results">
+    <div class="card" style="margin-top:22px">
+      <div class="card-title">📊 Resultados</div>
+      <div id="resultsContent"></div>
+    </div>
+  </div>
+<div class="container">
+
+  <div class="card">
+
+    <div class="card-title">Tutorial y Contenido sobre el juego </div>
+
+      <p>
+        en este apartado veras contenido sobre lore del juego y algunos personajes .
+      </p>
+
+      <br>
+
+        <button class="btn btn-primary"
+                    onclick="showScreen('about')">
+                Vamos!
+        </button>
+
+    </div>
+  </div>
+</div>
     </section>
     <script src="main.js"></script>
 </body>
