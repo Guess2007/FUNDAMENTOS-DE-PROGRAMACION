@@ -151,22 +151,7 @@ header a:hover{
     padding: 100px;
     background-color: beige;
 }
-/*important part*/
-.lista_personajes{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    list-style: none;
-    padding: 0; 
-}
-.lista_personajes img{
-    height: 50px;
-}
-.personajes_ciclos img{
-    height: 50px;
-    gap: 20px;
-    padding: 0;
-}
+
 /*navegacion entre paginas*/
 @view-transition{
     navigation; auto;
