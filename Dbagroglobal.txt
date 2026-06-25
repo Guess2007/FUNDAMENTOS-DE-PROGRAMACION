@@ -157,17 +157,14 @@ VALUES
 ('LOT-ARA-001', '2026-01-26', 'BlueBerry Export', 'Listo', 8),
 ('LOT-TOM-001', '2026-01-28', 'Huerta Verde', 'En proceso', 9),
 ('LOT-PAP-001', '2026-01-30', 'Sierra Productiva', 'Listo', 10);
-
-INSERT INTO LoteCertificaciones (lote_id,certificacion_id) VALUES
-(1,1),(1,2),(2,2),(2,3),(3,3),(3,4),(4,4),(4,5),
-(5,5),(5,6),(6,6),(6,7),(7,7),(7,8),(8,8),(8,9),
-(9,9),(9,10),(10,10),(10,11),(11,11),(11,12),(12,12),
-(12,13),(13,13),(13,14),(14,14),(14,15),(15,15);
-
 INSERT INTO Certificaciones (nombre) VALUES 
 ('GlobalGAP'),('Organic'),('RainForest'),('Fair Trade'),('HACCP'),('BRC'),('ISO 22000'),('SMETA'),
 ('GRASP'),('USDA Organic'),('EU Organic'),('PrimusGFS'),('IFS Food'),('Sedex'),
 ('Carbon Neutral');
+INSERT INTO LoteCertificaciones (lote_id,certificacion_id) VALUES
+(1,1),(1,2),(2,2),(2,3),(3,3),(3,4),(4,4),(4,5),
+(5,5),(5,6),(6,6),(6,7),(7,7),(7,8),(8,8),(8,9),
+(9,9),(9,10),(10,10),(10,11);
 INSERT INTO Canales
 (nombre_empresa, tipo_canal, pais_destino, email_contacto)
 VALUES
