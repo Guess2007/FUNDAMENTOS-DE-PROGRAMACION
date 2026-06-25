@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -18,39 +19,39 @@ namespace Codigo_para_el_proyecto_final__U_
         public int cantidad { get; set; }
         public decimal precio { get; set; }
     }
+    public class workers
+    {
+        public string name { get; set; }
+        public string rol { get; set; }
+        public string password { get; set; }
+    }
     internal class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Bienvenido al login...");
-            Console.WriteLine("Para empezar, registre el numero de trabajadores: "); int n = int.Parse(Console.ReadLine());
-            string[,] trabajadores = new string[n + 1, 4];
-            trabajadores[0, 0] = "Nombre";
-            trabajadores[0, 1] = "Cargo";
-            trabajadores[0, 2] = "contraseña";
-            trabajadores[0, 3] = "salario";
-            for (int i = 0; i < n; i++)
+            List<workers> trabajadores = new List<workers>();
+            Console.WriteLine("ingrese el numero de trabajadores"); int numeroDeTrabajadores = int.Parse(Console.ReadLine());
+            for (int i = 0; i < numeroDeTrabajadores; i++)
             {
-                Console.WriteLine("Ingrese el " + trabajadores[0, 0] + " del trabajador nº " + (i+1) + ": ");
-                trabajadores[i + 1, 0] = Console.ReadLine();
+                trabajadores.Add(new workers());
             }
-            for (int i = 0; i < n; i++)
+            Console.WriteLine("ingrese los datos de los trabajadores");
+            for (int i = 0; i < trabajadores.Count; i++)
             {
-                Console.WriteLine("Ingrese el " + trabajadores[0, 1] + " del trabajador nº " + (i + 1) + ": ");
-                trabajadores[i + 1, 1] = Console.ReadLine();
+                Console.Write("Nombre: ");
+                trabajadores[i].name = Console.ReadLine();
+                Console.Write("Rol: ");
+                trabajadores[i].rol = Console.ReadLine();
+                Console.Write("Contraseña: ");
+                trabajadores[i].password = Console.ReadLine();
             }
-            for (int i = 0; i < n; i++)
+            Console.WriteLine("Lista de trabajadores");
+            for (int i = 0; i < trabajadores.Count; i++)
             {
-                Console.WriteLine("Ingrese el " + trabajadores[0, 2] + " del trabajador nº " + (i + 1) + ": ");
-                trabajadores[i + 1, 2] = Convert.ToString(Console.ReadLine());
-            }
-            Console.WriteLine("Lista actual de registros...");
-
-            for (int i = 0; i < n; i++)
-            {
-                Console.WriteLine("trabajador nº " + (i + 1) + ": " + trabajadores[i + 1, 0]);
-                Console.WriteLine("Cargo: " + trabajadores[i + 1, 1]);
-                Console.WriteLine("Salario: " + trabajadores[i + 1, 2]);
+                Console.WriteLine($"Trabajador n° {i + 1}: {trabajadores[i].name}");
+                Console.WriteLine($"Rol: {trabajadores[i].rol}");
+                Console.WriteLine($"Contraseña: {trabajadores[i].password}");
             }
             Console.WriteLine("Trabajadores registrados exitosamente...");
             Console.ReadKey();
@@ -58,9 +59,9 @@ namespace Codigo_para_el_proyecto_final__U_
             Console.WriteLine("Bienvenido al sistema de consulta de trabajadores...");
             Console.WriteLine("Para empezar su nombre"); string nombre = Console.ReadLine();
             Console.WriteLine("ingrese su rol \n1. Administrador\n2. Vendedor"); string rol = Console.ReadLine().ToLower();
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < trabajadores.Count; i++)
             {
-                if (trabajadores[i + 1, 0] == nombre)
+                if (trabajadores[i].name == nombre)
                 {
                     Console.WriteLine("Bienvenido, " + nombre);
                     if (rol == "administrador") 
@@ -78,7 +79,7 @@ namespace Codigo_para_el_proyecto_final__U_
                     }
                     Console.WriteLine("Para proceder con el sistema, por favor, ingrese su contraseña: ");
                     Console.WriteLine("ingrese su contraseña"); string contraseña = Console.ReadLine();
-                    if (trabajadores[i + 1, 2] == contraseña)
+                    if (trabajadores[i].password == contraseña)
                     {
                         Console.WriteLine("Contraseña correcta, acceso concedido.");
                     }
@@ -89,11 +90,11 @@ namespace Codigo_para_el_proyecto_final__U_
                     }
                     if (rol == "administrador")
                     {
-                        sistema_administradores(n, trabajadores);
+                        sistema_administradores(trabajadores.Count, trabajadores);
                     }
                     else if (rol == "vendedor")
                     {
-                        sistema_vendedores();
+                        sistema_vendedores(trabajadores);
                     }
                     else
                     {
@@ -101,9 +102,9 @@ namespace Codigo_para_el_proyecto_final__U_
                         Console.ReadKey();
                     }
                 }
-                else if (trabajadores[i + 1, 0] != nombre) 
+                else if (trabajadores[i].name != nombre) 
                 {
-                    if (trabajadores[i + 1, 1] != rol)
+                    if (trabajadores[i].rol != rol)
                     {
                         Console.WriteLine("Datos invalidos, acceso denegado."); Console.ReadKey();
                     }
@@ -113,20 +114,24 @@ namespace Codigo_para_el_proyecto_final__U_
             //No, por lo tanto, el vendedor no podra acceder a la lista de productos, lo que es un gran problema,
             //ya que el vendedor necesita esa informacion para vender los productos.
         }
-        static public void sistema_vendedores()
+        static public void sistema_vendedores(List<workers> a)
         {
-            Console.WriteLine();
+            Console.WriteLine("Bienvenido al sistema de vendedores:]");
+            Console.WriteLine("Ingrese sus credenciales...");
+            Console.Write("Nombre: ");
+            Console.Write("Contraseña: ");
+            if () { }
         }
-        static public void sistema_administradores(int n, string[,] a)
+        static public void sistema_administradores(int n, List<workers> a)
         {
             Console.Clear();
             Console.WriteLine("Bienvenido al sistema de administradores...");
             Console.WriteLine("Esta es su lista de trabajadores registrados...");
             for (int i = 0; i < n; i++)
             {
-                Console.WriteLine("trabajador nº " + (i + 1)  + ": " + a[i + 1, 0]);
-                Console.WriteLine("Cargo: " + a[i + 1, 1]);
-                Console.WriteLine("contraseña: " + a[i + 1, 2]);
+                Console.WriteLine("trabajador nº " + (i + 1)  + ": " + a[i].name);
+                Console.WriteLine("Cargo: " + a[i].rol);
+                Console.WriteLine("contraseña: " + a[i].password);
             }
             Console.WriteLine("¿Desea ejecutar alguna accion extra? (s/n)"); char reader = char.Parse(Console.ReadLine());
             if (reader == 's')
@@ -138,7 +143,7 @@ namespace Codigo_para_el_proyecto_final__U_
                 // y quienes se van.
                 int opcionElegida = int.Parse(Console.ReadLine());
                 Console.Clear();
-                funciones_administrador(opcionElegida);
+                funciones_administrador(opcionElegida, a);
             }
             else if (reader == 'n')
             {
@@ -147,8 +152,9 @@ namespace Codigo_para_el_proyecto_final__U_
             }
 
         }
-        static public void funciones_administrador(int n)
+        static public void funciones_administrador(int n, List<workers> a)
         {
+            string rutaArchivo;
             switch (n)
             {
                 case 1:
@@ -159,7 +165,7 @@ namespace Codigo_para_el_proyecto_final__U_
                     {
                         estante.Add(new productos());
                     }
-                    for (int i = 0;i < numeroproductos; i++)
+                    for (int i = 0; i < numeroproductos; i++)
                     {
                         Console.WriteLine("Ingrese el nombre del producto nº " + (i + 1) + ": ");
                         estante[i].nombre_producto = Console.ReadLine();
@@ -175,12 +181,12 @@ namespace Codigo_para_el_proyecto_final__U_
                         Console.WriteLine("Precio: " + estante[i].precio);
                     }
                     Console.ReadKey();
-                    Console.WriteLine("¿Desea agregar o eliminar productos? (agregar/eliminar)"); string reader = Console.ReadLine(); 
+                    Console.WriteLine("¿Desea agregar o eliminar productos? (agregar/eliminar)"); string reader = Console.ReadLine();
                     Console.ReadKey();
                     if (reader == "agregar")
                     {
                         Console.WriteLine("Indique la cantidad de productos a agregar..."); int nuevolargo = int.Parse(Console.ReadLine());
-                        for (int i = 0;i < nuevolargo; i++)
+                        for (int i = 0; i < nuevolargo; i++)
                         {
                             estante.Add(new productos());
                         }
@@ -225,11 +231,59 @@ namespace Codigo_para_el_proyecto_final__U_
                     }
                     break;
                 case 2:
-                    Console.WriteLine("");
-                    Console.WriteLine();
+                    int uit = 38500;
+                    int igv = 18 / 100;
+                    Console.WriteLine("Bienvenido al sistema de contabilizaciones");
+                    Console.WriteLine("Registre sus ventas...");
+                    int[] ventas = new int[4];
+                    for (int i = 0; i < ventas.Length; i++)
+                    {
+                        Console.WriteLine($"ingreso n° {ventas[i + 1]}: ");
+                        ventas[i] = int.Parse(Console.ReadLine());
+                    }
+                    int ventatotal = ventas.Sum();
+                    double ventaneta = ventatotal / igv;
+                    Console.Write($"Su venta anual es de: {ventatotal}");
+                    Console.WriteLine($"Con IGV: {ventaneta}");
+                    Console.WriteLine("Ingrese el coste de inventario: "); int costes = int.Parse(Console.ReadLine());
+                    double ganancias = ventaneta - costes;
+                    if (ganancias < uit) 
+                    {
+                        Console.WriteLine($"Su ganancia es de: {ganancias}");
+                    }
+                    else 
+                    {
+                        Console.WriteLine("Aplicando UIT");
+                        double impuesto = (ganancias - uit) * 8/100;
+                        Console.WriteLine($"El impuesto a la renta anual seria de {impuesto}");
+                        Console.WriteLine($"La ganancia anual seria de {ganancias - impuesto}");
+                        Console.ReadKey();
+                        rutaArchivo = "ganancia.txt";
+                        string ElementoAGuardar = Convert.ToString(ganancias - impuesto);
+                        File.WriteAllText(rutaArchivo, ElementoAGuardar);
+                    }
                     break;
                 case 3:
-                    Console.WriteLine();
+                    Console.WriteLine("Nienvenido al sistema de salarios");
+                    if (File.Exists(rutaArchivo = "ganancias.txt")) 
+                    {
+                        string extractor = File.ReadAllText("ganancia.txt");
+                        double ganancia = Convert.ToDouble(extractor);
+                        Console.WriteLine("Estimaremos la cantidad de partes en las que puede dividir sus ganancias entre salarios");
+                        Console.WriteLine($"Sueldo anual equitativo: {ganancia / a.Count}");
+                    }
+                    else 
+                    {
+                        Console.WriteLine("Ingrese el monto de su ganancia: "); int ganancia = int.Parse(Console.ReadLine());
+                        Console.WriteLine($"Sueldo anual equitativo entre todos los empleados: {ganancia / a.Count}");
+                    }
+                    break;
+                case 4:
+                    Console.WriteLine("Bienvenido al sistema calificativo de desempeño");
+                    
+                    break;
+                case 5:
+                    Console.WriteLine("");
                     break;
                 default:
                     Console.WriteLine();
