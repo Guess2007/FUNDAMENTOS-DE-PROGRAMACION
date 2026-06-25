@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,13 @@ using System.Threading.Tasks;
 
 namespace Codigo_para_el_proyecto_final__U_
 {
+    public class productos
+    {
+
+        public string nombre_producto { get; set; }
+        public int cantidad { get; set; }
+        public decimal precio { get; set; }
+    }
     internal class Program
     {
         static void Main(string[] args)
@@ -49,13 +57,25 @@ namespace Codigo_para_el_proyecto_final__U_
             Console.Clear();
             Console.WriteLine("Bienvenido al sistema de consulta de trabajadores...");
             Console.WriteLine("Para empezar su nombre"); string nombre = Console.ReadLine();
-            Console.WriteLine("ingrese su rol"); string rol = Console.ReadLine();
+            Console.WriteLine("ingrese su rol \n1. Administrador\n2. Vendedor"); string rol = Console.ReadLine().ToLower();
             for (int i = 0; i < n; i++)
             {
                 if (trabajadores[i + 1, 0] == nombre)
                 {
                     Console.WriteLine("Bienvenido, " + nombre);
-                    Console.WriteLine("Cargo: " + rol);
+                    if (rol == "administrador") 
+                    {
+                        Console.WriteLine("Rol: Administrador");
+                    }
+                    else if (rol == "vendedor")
+                    {
+                        Console.WriteLine("Rol: Vendedor");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Rol invalido, cerrando sistema...");
+                        Environment.Exit(0);
+                    }
                     Console.WriteLine("Para proceder con el sistema, por favor, ingrese su contraseña: ");
                     Console.WriteLine("ingrese su contraseña"); string contraseña = Console.ReadLine();
                     if (trabajadores[i + 1, 2] == contraseña)
@@ -79,6 +99,13 @@ namespace Codigo_para_el_proyecto_final__U_
                     {
                         Console.WriteLine("Credenciales invalidas, cerrando sistema...");
                         Console.ReadKey();
+                    }
+                }
+                else if (trabajadores[i + 1, 0] != nombre) 
+                {
+                    if (trabajadores[i + 1, 1] != rol)
+                    {
+                        Console.WriteLine("Datos invalidos, acceso denegado."); Console.ReadKey();
                     }
                 }
             }
@@ -127,39 +154,69 @@ namespace Codigo_para_el_proyecto_final__U_
                 case 1:
                     Console.WriteLine("Indicar la cantidad de productos a su disposicion: ");
                     int numeroproductos = int.Parse(Console.ReadLine());
-                    string[, ] estantes = new string [numeroproductos + 1,4];
-                    estantes[0, 0] = "producto"; estantes[0, 1] = "tipo"; estantes[0, 2] = "precio"; estantes[0, 3] = "cantidad";
-                    Console.WriteLine("Indica los productos que dispondran tus estantes: ");
+                    List<productos> estante = new List<productos>();
                     for (int i = 0; i < numeroproductos; i++)
                     {
-                        Console.Write("Nombre del producto n° " + (i + 1) + ": "); ;
-                        estantes[i + 1, 0] = Console.ReadLine();
-                        Console.Write("Tipo de producto n° " + (i + 1) + ": ");
-                        estantes[i + 1, 1] = Console.ReadLine();
-                        Console.Write("Precio del producto n° " + (i + 1) + ": ");                       
-                        estantes[i + 1, 2] = Convert.ToString(Console.ReadLine());
-                        Console.Write("Cantidad del producto n° " + (i + 1) + ": ");
-                        estantes[i + 1, 3] = Console.ReadLine();
+                        estante.Add(new productos());
                     }
-                    Console.WriteLine("Esta es su lista de productos actual: ");
-                    for (int i = 1; i < numeroproductos + 1; i++)
+                    for (int i = 0;i < numeroproductos; i++)
                     {
-                        Console.WriteLine($"Producto n° {i}: {estantes[i, 0]}\nTipo: {estantes[i, 1]}\nPrecio: {estantes[i, 2]}\nCantidad: {estantes[i, 3]}");                        
+                        Console.WriteLine("Ingrese el nombre del producto nº " + (i + 1) + ": ");
+                        estante[i].nombre_producto = Console.ReadLine();
+                        Console.WriteLine("Ingrese la cantidad del producto nº " + (i + 1) + ": ");
+                        estante[i].cantidad = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Ingrese el precio del producto nº " + (i + 1) + ": ");
+                        estante[i].precio = decimal.Parse(Console.ReadLine());
                     }
-                    int largoantiguo = estantes.GetLength(0);
-                    int anchoantiguo = estantes.GetLength(1);
-                    Console.WriteLine($"El largo de la matriz es: {largoantiguo} y el ancho es: {anchoantiguo}");
-                    Console.WriteLine("Lista terminada..."); Console.ReadKey();
-                    Console.WriteLine("¿Desea agregar un producto o desea eliminar uno? (s/n)");
-                    string reader = Console.ReadLine();
+                    for (int i = 0; i < numeroproductos; i++)
+                    {
+                        Console.WriteLine("Producto nº " + (i + 1) + ": " + estante[i].nombre_producto);
+                        Console.WriteLine("Cantidad: " + estante[i].cantidad);
+                        Console.WriteLine("Precio: " + estante[i].precio);
+                    }
+                    Console.ReadKey();
+                    Console.WriteLine("¿Desea agregar o eliminar productos? (agregar/eliminar)"); string reader = Console.ReadLine(); 
+                    Console.ReadKey();
                     if (reader == "agregar")
                     {
                         Console.WriteLine("Indique la cantidad de productos a agregar..."); int nuevolargo = int.Parse(Console.ReadLine());
-                        string[,] productosactuales = new string[nuevolargo,];
-                      
+                        for (int i = 0;i < nuevolargo; i++)
+                        {
+                            estante.Add(new productos());
+                        }
+                        for (int i = numeroproductos; i < nuevolargo; i++)
+                        {
+                            Console.WriteLine("Ingrese el nombre del producto nº " + (i + 1) + ": ");
+                            estante[i].nombre_producto = Console.ReadLine();
+                            Console.WriteLine("Ingrese la cantidad del producto nº " + (i + 1) + ": ");
+                            estante[i].cantidad = int.Parse(Console.ReadLine());
+                            Console.WriteLine("Ingrese el precio del producto nº " + (i + 1) + ": ");
+                            estante[i].precio = decimal.Parse(Console.ReadLine());
+                        }
+                        Console.WriteLine("Productos agregados exitosamente.");
+                        Console.WriteLine("Esta es su nueva lista:");
+                        for (int i = 0; i < nuevolargo; i++)
+                        {
+                            Console.WriteLine("Producto nº " + (i + 1) + ": " + estante[i].nombre_producto);
+                            Console.WriteLine("Cantidad: " + estante[i].cantidad);
+                            Console.WriteLine("Precio: " + estante[i].precio);
+                        }
                     }
                     else if (reader == "eliminar")
                     {
+                        Console.WriteLine("Indique la cantidad de productos a eliminar..."); int nuevolargo = int.Parse(Console.ReadLine());
+                        for (int i = 0; i < nuevolargo; i++)
+                        {
+                            estante.RemoveAt(estante.Count - 1);
+                        }
+                        Console.WriteLine("Productos eliminados exitosamente.");
+                        Console.WriteLine("Esta es su nueva lista:");
+                        for (int i = 0; i < estante.Count; i++)
+                        {
+                            Console.WriteLine("Producto nº " + (i + 1) + ": " + estante[i].nombre_producto);
+                            Console.WriteLine("Cantidad: " + estante[i].cantidad);
+                            Console.WriteLine("Precio: " + estante[i].precio);
+                        }
                     }
                     else
                     {
@@ -179,20 +236,5 @@ namespace Codigo_para_el_proyecto_final__U_
                     break;
             }
         }
-
-
-        public static T[,] ResizeArray<T>(T[,] original, int newWidth, int newHeight, int offsetX = 0, int offsetY = 0)
-        {
-            T[,] newArray = new T[newWidth, newHeight];
-            int width = original.GetLength(0);
-            int height = original.GetLength(1);
-            for (int x = 0; x < width; x++)
-            {
-                Array.Copy(original, x * height, newArray, (x + offsetX) * newHeight + offsetY, height);
-            }
-
-            return newArray;
-        }
-
     }
 }
