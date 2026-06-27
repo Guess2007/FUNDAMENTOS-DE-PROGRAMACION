@@ -1,7 +1,8 @@
 ﻿using System;
-using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -24,6 +25,8 @@ namespace Codigo_para_el_proyecto_final__U_
         public string name { get; set; }
         public string rol { get; set; }
         public string password { get; set; }
+        public int sells { get; set; }
+        public int mistakes { get; set; }
     }
     internal class Program
     {
@@ -57,14 +60,10 @@ namespace Codigo_para_el_proyecto_final__U_
             Console.ReadKey();
             Console.Clear();
             Console.WriteLine("Bienvenido al sistema de consulta de trabajadores...");
-            Console.WriteLine("Para empezar su nombre"); string nombre = Console.ReadLine();
             Console.WriteLine("ingrese su rol \n1. Administrador\n2. Vendedor"); string rol = Console.ReadLine().ToLower();
             for (int i = 0; i < trabajadores.Count; i++)
             {
-                if (trabajadores[i].name == nombre)
-                {
-                    Console.WriteLine("Bienvenido, " + nombre);
-                    if (rol == "administrador") 
+                    if (rol == "administrador")
                     {
                         Console.WriteLine("Rol: Administrador");
                     }
@@ -94,33 +93,96 @@ namespace Codigo_para_el_proyecto_final__U_
                     }
                     else if (rol == "vendedor")
                     {
-                        sistema_vendedores(trabajadores);
+                        sistema_vendedores(trabajadores.Count, trabajadores);
                     }
                     else
                     {
                         Console.WriteLine("Credenciales invalidas, cerrando sistema...");
                         Console.ReadKey();
-                    }
+                    }                                                                                                                                                                                                             ñ
                 }
-                else if (trabajadores[i].name != nombre) 
-                {
-                    if (trabajadores[i].rol != rol)
-                    {
-                        Console.WriteLine("Datos invalidos, acceso denegado."); Console.ReadKey();
-                    }
-                }
-            }
             //Si el admin nunca ingresa al sistema, ¿la lista de productos existira en caso de que el vendedor ingrese al sistema?
             //No, por lo tanto, el vendedor no podra acceder a la lista de productos, lo que es un gran problema,
             //ya que el vendedor necesita esa informacion para vender los productos.
         }
-        static public void sistema_vendedores(List<workers> a)
+        static public void sistema_vendedores(int n, List<workers> a)
         {
             Console.WriteLine("Bienvenido al sistema de vendedores:]");
             Console.WriteLine("Ingrese sus credenciales...");
-            Console.Write("Nombre: ");
-            Console.Write("Contraseña: ");
-            if () { }
+            Console.Write("Nombre: "); string nombre = Console.ReadLine();
+            Console.Write("Contraseña: "); string pw = Console.ReadLine();
+            for (int i = 0; i < a.Count; i++)
+            {
+                if (a[i].name == nombre)
+                {
+                    if (a[i].password == pw)
+                    {
+                        Console.WriteLine($"Bienvenido {nombre}");
+                        funciones_vendedores(n, a);
+                    }
+                }
+                else if (a[i].name != nombre)
+                {
+                    Console.WriteLine("Nombre equivocado");
+                    if (a[i].password != pw)
+                    {
+                        Console.WriteLine("Contraseña incorrecta, cerrando el sistemaa");
+                        Console.WriteLine("Credenciales invalidas, tenga buen dia");
+                    }
+                }
+            }
+        }
+        static public void funciones_vendedores(int n, List<workers> a)
+        {
+            Console.WriteLine("¿Que funcion desea ejecutar?\n1. Ventaa mensuales\n2. Rendimiento\n3. Almacen idsponible");
+            int reader = int.Parse(Console.ReadLine());
+            string RutaArchivo;
+            switch (reader)
+            {
+                case 1:
+                    Console.WriteLine("ventas mensuales: ");
+                    double[] ventasmensuales = new double[12];
+                    for (int i = 0; i < ventasmensuales.Length; i++)
+                    {
+                        Console.WriteLine($"Venta n° {i + 1}: ");
+                        ventasmensuales[i] = double.Parse(Console.ReadLine());
+                    }
+                    for (int i = 0; i < ventasmensuales.Length; i++)
+                    {
+                        Console.WriteLine($"Venta n° {i + 1} :" + ventasmensuales[i]);
+                    }
+                    RutaArchivo = "Venta.txt";
+                    string ElementoAGuardar = Convert.ToString(ventasmensuales);
+                    File.WriteAllText(RutaArchivo, ElementoAGuardar);
+                    break;
+                case 2:
+                    List<workers> calificador = new List<workers>();
+                    for (int i = 0; i < n; i++)
+                    Console.WriteLine("Sistema dedicado al informe de rendimiento de los trabajadres");
+                    for (int i = 0; i < n; i++) 
+                    {
+                        Console.WriteLine($"Trabajador n° {i + 1}: {a[i].name}");
+                        Console.WriteLine($"ventas: "); 
+                        calificador[i].sells = int.Parse(Console.ReadLine());
+                        Console.WriteLine($"errores: ");
+                        calificador[i].mistakes = int.Parse(Console.ReadLine());
+                    }
+                    Console.WriteLine("Este es el ranking de empleados:");
+                    for (int i = 0; i < n; i++)
+                    {
+                        for (int j = 1; j < n; j++) 
+                        {
+                            if (calificador[i].sells < calificador[j].sells) 
+                            {
+                                Console.WriteLine($"El trabajar numero {i} es: {calificador[i].name}");
+                                Console.WriteLine($"El trabajador numero {j} es: {calificador[j].name}");
+                            }
+                        }
+                    }
+                    break;
+                case 3:
+                    break;
+            }
         }
         static public void sistema_administradores(int n, List<workers> a)
         {
@@ -234,33 +296,40 @@ namespace Codigo_para_el_proyecto_final__U_
                     int uit = 38500;
                     int igv = 18 / 100;
                     Console.WriteLine("Bienvenido al sistema de contabilizaciones");
-                    Console.WriteLine("Registre sus ventas...");
-                    int[] ventas = new int[4];
-                    for (int i = 0; i < ventas.Length; i++)
+                    if (File.Exists(rutaArchivo = "ventas.txt"))
                     {
-                        Console.WriteLine($"ingreso n° {ventas[i + 1]}: ");
-                        ventas[i] = int.Parse(Console.ReadLine());
-                    }
-                    int ventatotal = ventas.Sum();
-                    double ventaneta = ventatotal / igv;
-                    Console.Write($"Su venta anual es de: {ventatotal}");
-                    Console.WriteLine($"Con IGV: {ventaneta}");
-                    Console.WriteLine("Ingrese el coste de inventario: "); int costes = int.Parse(Console.ReadLine());
-                    double ganancias = ventaneta - costes;
-                    if (ganancias < uit) 
-                    {
-                        Console.WriteLine($"Su ganancia es de: {ganancias}");
+
                     }
                     else 
                     {
-                        Console.WriteLine("Aplicando UIT");
-                        double impuesto = (ganancias - uit) * 8/100;
-                        Console.WriteLine($"El impuesto a la renta anual seria de {impuesto}");
-                        Console.WriteLine($"La ganancia anual seria de {ganancias - impuesto}");
-                        Console.ReadKey();
-                        rutaArchivo = "ganancia.txt";
-                        string ElementoAGuardar = Convert.ToString(ganancias - impuesto);
-                        File.WriteAllText(rutaArchivo, ElementoAGuardar);
+                        Console.WriteLine("Registre sus ventas...");
+                        int[] ventas = new int[4];
+                        for (int i = 0; i < ventas.Length; i++)
+                        {
+                            Console.WriteLine($"ingreso n° {ventas[i + 1]}: ");
+                            ventas[i] = int.Parse(Console.ReadLine());
+                        }
+                        int ventatotal = ventas.Sum();
+                        double ventaneta = ventatotal / igv;
+                        Console.Write($"Su venta anual es de: {ventatotal}");
+                        Console.WriteLine($"Con IGV: {ventaneta}");
+                        Console.WriteLine("Ingrese el coste de inventario: "); int costes = int.Parse(Console.ReadLine());
+                        double ganancias = ventaneta - costes;
+                        if (ganancias < uit)
+                        {
+                            Console.WriteLine($"Su ganancia es de: {ganancias}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Aplicando UIT");
+                            double impuesto = (ganancias - uit) * 8 / 100;
+                            Console.WriteLine($"El impuesto a la renta anual seria de {impuesto}");
+                            Console.WriteLine($"La ganancia anual seria de {ganancias - impuesto}");
+                            Console.ReadKey();
+                            rutaArchivo = "ganancia.txt";
+                            string ElementoAGuardar = Convert.ToString(ganancias - impuesto);
+                            File.WriteAllText(rutaArchivo, ElementoAGuardar);
+                        }
                     }
                     break;
                 case 3:

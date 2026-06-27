@@ -21,3 +21,10 @@ C:\Users\DOCENTE\Documents\GitHub\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el pro
 C:\Users\DOCENTE\Documents\GitHub\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\bin\Debug\Codigo para el proyecto final ─U─.exe.config
 C:\Users\DOCENTE\Documents\GitHub\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\bin\Debug\Codigo para el proyecto final ─U─.exe
 C:\Users\DOCENTE\Documents\GitHub\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\bin\Debug\Codigo para el proyecto final ─U─.pdb
+C:\Users\EeAa\Desktop\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\bin\Debug\Codigo para el proyecto final ─U─.exe.config
+C:\Users\EeAa\Desktop\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\bin\Debug\Codigo para el proyecto final ─U─.exe
+C:\Users\EeAa\Desktop\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\bin\Debug\Codigo para el proyecto final ─U─.pdb
+C:\Users\EeAa\Desktop\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\obj\Debug\Codigo para el proyecto final ─U─.csproj.AssemblyReference.cache
+C:\Users\EeAa\Desktop\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\obj\Debug\Codigo para el proyecto final ─U─.csproj.CoreCompileInputs.cache
+C:\Users\EeAa\Desktop\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\obj\Debug\Codigo para el proyecto final ─U─.exe
+C:\Users\EeAa\Desktop\FUNDAMENTOS-DE-PROGRAMACION\Codigo para el proyecto final ─U─\Codigo para el proyecto final ─U─\obj\Debug\Codigo para el proyecto final ─U─.pdb
