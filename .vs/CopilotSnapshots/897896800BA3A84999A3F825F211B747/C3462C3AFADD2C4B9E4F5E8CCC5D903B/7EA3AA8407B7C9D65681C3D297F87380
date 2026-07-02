@@ -16,8 +16,7 @@ namespace Codigo_para_el_proyecto_final__U_
     public class productos
     {
         public string nombre_producto { get; set; }
-        public int cantidad_inicio { get; set; }
-        public int cantidad_final { get; set; }
+        public int cantidad { get; set; }
         public decimal precio_venta { get; set; }
         public double precio_compra { get; set; }
     }
@@ -33,7 +32,6 @@ namespace Codigo_para_el_proyecto_final__U_
         public string password { get; set; }
         public int sells { get; set; }
         public int mistakes { get; set; }
-        public int score { get; set; }
     }
     internal class Program
     {
@@ -58,7 +56,7 @@ namespace Codigo_para_el_proyecto_final__U_
 
                 Rol rolIngresado;
 
-                Console.Write("Rol (Administrador/Empleado): ");
+                Console.Write("Rol (Administrador/Gerente/Empleado): ");
 
                 while (!Enum.TryParse(Console.ReadLine(), true, out rolIngresado))
                 {
@@ -141,7 +139,8 @@ namespace Codigo_para_el_proyecto_final__U_
 
                 case Rol.Empleado:
                     Console.WriteLine("\n===== MENÚ EMPLEADO =====");
-                    sistema_vendedores(trabajadores.Count, trabajadores);
+                    Console.WriteLine("1. Registrar actividades");
+                    Console.WriteLine("2. Consultar tareas");
                     break;
 
                 default:
@@ -184,9 +183,9 @@ namespace Codigo_para_el_proyecto_final__U_
         }
         static public void funciones_vendedores(int n, List<workers> a)
         {
-            Console.WriteLine("¿Que funcion desea ejecutar?\n1. Ventas mensuales\n2. Rendimiento\n3. Almacen idsponible");
+            Console.WriteLine("¿Que funcion desea ejecutar?\n1. Ventaa mensuales\n2. Rendimiento\n3. Almacen idsponible");
             int reader = int.Parse(Console.ReadLine());
-            string RutaArchivo, lector;
+            string RutaArchivo;
             switch (reader)
             {
                 case 1:
@@ -207,10 +206,7 @@ namespace Codigo_para_el_proyecto_final__U_
                     break;
                 case 2:
                     List<workers> calificador = new List<workers>();
-                    for (int i = 0; i < n; i++) 
-                    {
-                        calificador.Add(new workers());
-                    }
+                    for (int i = 0; i < n; i++)
                     Console.WriteLine("Sistema dedicado al informe de rendimiento de los trabajadres");
                     for (int i = 0; i < n; i++) 
                     {
@@ -234,29 +230,6 @@ namespace Codigo_para_el_proyecto_final__U_
                     }
                     break;
                 case 3:
-                    Console.WriteLine("Has llegado al final de tu jornada (opcion a/opcion b)");
-                    lector = Console.ReadLine();
-                    Console.WriteLine("En orden de concluir con tu dia, registra la cantidad de productos restantes");
-                    string opcion_a = "cuento con documento de productos iniciales";
-                    string opcion_b = "no cuento con documento de productos iniciales";
-                    string [] opcion = { opcion_a, opcion_b };
-                    while (lector != opcion[0] && lector != opcion[1])
-                    {
-                        Console.WriteLine("Opcion invalida, por favor ingrese una opcion valida");
-                        lector = Console.ReadLine();
-                    }
-                    if (lector == opcion[0])
-                    {
-                        Console.WriteLine("Ingrese la cantidad de productos restantes: ");
-                        int cantidad_restante = int.Parse(Console.ReadLine());
-                        Console.WriteLine($"La cantidad de productos restantes es: {cantidad_restante}");
-                    }
-                    else if (lector == opcion[1])
-                    {
-                        Console.WriteLine("Ingrese la cantidad de productos restantes: ");
-                        int cantidad_restante = int.Parse(Console.ReadLine());
-                        Console.WriteLine($"La cantidad de productos restantes es: {cantidad_restante}");
-                    }
                     break;
             }
         }
@@ -276,6 +249,7 @@ namespace Codigo_para_el_proyecto_final__U_
             char reader = '\0';
             do
             {
+
                 Console.Write("¿Desea ejecutar alguna acción extra? (s/n): ");
                 entrada = Console.ReadLine();
 
@@ -295,7 +269,6 @@ namespace Codigo_para_el_proyecto_final__U_
             } while (reader != 's' && reader != 'n');
             if (reader == 's')
             {
-                Console.Clear();
                 Console.WriteLine("¿Que operacion desea ejecutar?");
                 Console.WriteLine("1. Gestionar almacen. \n2. Ajuste de recibos. \n3. Asignacion de salarios. \n4. Renovacion de contratos.");
                 //Las dos ultimas funciones son redudantes y podria simplemente ponerlas en la tercera funcion, igualmente, podria renombrar la funcion como gestion de empleados
@@ -307,16 +280,15 @@ namespace Codigo_para_el_proyecto_final__U_
             }
             else if (reader == 'n')
             {
-                Console.Clear();
                 Console.WriteLine("Cerrando el sistema, presione enter para cerrar la consola...");
                 Console.ReadKey();
             }
+
         }
         static public void funciones_administrador(int n, List<workers> a)
         {
             string rutaArchivo;
             string extractor;
-            bool corrector;
             switch (n)
             {
                 case 1:
@@ -331,13 +303,8 @@ namespace Codigo_para_el_proyecto_final__U_
                     {
                         Console.WriteLine("Ingrese el nombre del producto nº " + (i + 1) + ": ");
                         estante[i].nombre_producto = Console.ReadLine();
-                        /*while (string.IsNullOrWhiteSpace(estante[i].nombre_producto) && (corrector = int.TryParse(Console.ReadLine(), out estante[i].nombre_producto)))
-                        {
-                            Console.WriteLine("El nombre del producto no puede estar vacío. Por favor, ingrese un nombre válido.");
-                            estante[i].nombre_producto = Console.ReadLine();
-                        }*/
                         Console.WriteLine("Ingrese la cantidad del producto nº " + (i + 1) + ": ");
-                        estante[i].cantidad_inicio = int.Parse(Console.ReadLine());
+                        estante[i].cantidad = int.Parse(Console.ReadLine());
                         Console.WriteLine("Ingrese el precio de venta del producto nº " + (i + 1) + ": ");
                         estante[i].precio_venta = decimal.Parse(Console.ReadLine());
                         Console.WriteLine("Ingrese el precio de compra del producto nº " + (i + 1) + ": ");
@@ -346,7 +313,7 @@ namespace Codigo_para_el_proyecto_final__U_
                     for (int i = 0; i < numeroproductos; i++)
                     {
                         Console.WriteLine("Producto nº " + (i + 1) + ": " + estante[i].nombre_producto);
-                        Console.WriteLine("Cantidad: " + estante[i].cantidad_inicio);
+                        Console.WriteLine("Cantidad: " + estante[i].cantidad);
                         Console.WriteLine("Precio de venta: " + estante[i].precio_venta);
                         Console.WriteLine("Precio de compra: " + estante[i].precio_compra);
                     }
@@ -365,7 +332,7 @@ namespace Codigo_para_el_proyecto_final__U_
                             Console.WriteLine("Ingrese el nombre del producto nº " + (i + 1) + ": ");
                             estante[i].nombre_producto = Console.ReadLine();
                             Console.WriteLine("Ingrese la cantidad del producto nº " + (i + 1) + ": ");
-                            estante[i].cantidad_inicio = int.Parse(Console.ReadLine());
+                            estante[i].cantidad = int.Parse(Console.ReadLine());
                             Console.WriteLine("Ingrese el precio de compra del producto nº " + (i + 1) + ": ");
                             estante[i].precio_compra = double.Parse(Console.ReadLine());
                             Console.WriteLine("Ingrese el precio de venta del producto nº " + (i + 1) + ": ");
@@ -376,11 +343,12 @@ namespace Codigo_para_el_proyecto_final__U_
                         for (int i = 0; i < nuevolargo; i++)
                         {
                             Console.WriteLine("Producto nº " + (i + 1) + ": " + estante[i].nombre_producto);
-                            Console.WriteLine("Cantidad: " + estante[i].cantidad_inicio);
+                            Console.WriteLine("Cantidad: " + estante[i].cantidad);
                             Console.WriteLine("Precio de venta: " + estante[i].precio_venta);
                         }
                         rutaArchivo = "productos.txt";
-                        File.WriteAllLines(rutaArchivo, estante.Select(p => $"{p.nombre_producto},{p.cantidad_inicio},{p.precio_venta},{p.precio_compra}"));
+                        File.WriteAllText(rutaArchivo, string.Join(Environment.NewLine, estante.Select(p => $"{p.nombre_producto},{p.cantidad},{p.precio_venta},{p.precio_compra}")));
+                        File.ReadAllText(rutaArchivo);
                     }
                     else if (reader == "eliminar")
                     {
@@ -394,11 +362,9 @@ namespace Codigo_para_el_proyecto_final__U_
                         for (int i = 0; i < estante.Count; i++)
                         {
                             Console.WriteLine("Producto nº " + (i + 1) + ": " + estante[i].nombre_producto);
-                            Console.WriteLine("Cantidad: " + estante[i].cantidad_inicio);
+                            Console.WriteLine("Cantidad: " + estante[i].cantidad);
                             Console.WriteLine("Precio de venta: " + estante[i].precio_venta);
                         }
-                        rutaArchivo = "productos.txt";
-                        File.WriteAllLines(rutaArchivo, estante.Select(p => $"{p.nombre_producto},{p.cantidad_inicio},{p.precio_venta},{p.precio_compra}"));
                     }
                     else
                     {
@@ -412,11 +378,7 @@ namespace Codigo_para_el_proyecto_final__U_
                     Console.WriteLine("Bienvenido al sistema de contabilizaciones");
                     if (File.Exists(rutaArchivo = "ventas.txt"))
                     {
-                        string recuperador = File.ReadAllText("ventas.txt");
-                        for (int i = 0; i < recuperador.Length; i++)
-                        {
-                            Console.WriteLine($"Venta n° {i + 1} :" + recuperador[i]);
-                        }
+
                     }
                     else 
                     {
@@ -467,55 +429,6 @@ namespace Codigo_para_el_proyecto_final__U_
                     break;
                 case 4:
                     Console.WriteLine("Bienvenido al sistema calificativo de desempeño");
-                    Console.WriteLine("¿Cuenta con registro previo del desempeño de la plana? (s/n)");
-                    string respuesta = Console.ReadLine();
-                    if (respuesta.ToLower() == "s")
-                    {
-                        Console.WriteLine("Ingrese el nombre del archivo de desempeño: ");
-                        string nombreArchivo = Console.ReadLine();
-                        if (File.Exists(nombreArchivo))
-                        {
-                            string[] lineas = File.ReadAllLines(nombreArchivo);
-                            foreach (string linea in lineas)
-                            {
-                                Console.WriteLine(linea);
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("El archivo no existe.");
-                        }
-                    }
-                    else if (respuesta.ToLower() == "n")
-                    {
-                        Console.WriteLine("Ingrese el desempeño de cada trabajador:");
-                        for (int i = 0; i < a.Count; i++)
-                        {
-                            Console.WriteLine($"Desempeño de {a[i].name}: ");
-                            a[i].sells = int.Parse(Console.ReadLine());
-                            Console.WriteLine($"Errores de {a[i].name}: ");
-                            a[i].mistakes = int.Parse(Console.ReadLine());
-                        }
-                        for (int i = 0; i < a.Count; i++)
-                        {
-                           for (int j = 0; j < a.Count; j++) 
-                            {
-                                Console.WriteLine($"Trabajador: {a[i].name}\nVentas: {a[i].sells} \nErrores: {a[i].mistakes}");
-                                int puntaje = a[i].sells - a[i].mistakes;
-                                Console.WriteLine($"Puntaje de {a[i].name}: {puntaje}");
-                                a[i].score = puntaje;
-                                if (a[j].score < a[j].score)
-                                {
-
-                                    Console.WriteLine($"El trabajador {a[j].name} tiene un desempeño inferior al trabajador {a[j].name}");
-                                }
-                            }
-                        }    
-                    }
-                    else
-                    {
-                        Console.WriteLine("Respuesta inválida.");
-                    }
                     break;
                 default:
                     Console.WriteLine();
