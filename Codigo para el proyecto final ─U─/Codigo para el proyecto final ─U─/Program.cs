@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32.SafeHandles;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -75,7 +76,10 @@ namespace Codigo_para_el_proyecto_final__U_
             }
 
             // Mostrar trabajadores registrados
-            Console.WriteLine("\n========== TRABAJADORES REGISTRADOS ==========");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine($"========== TRABAJADORES REGISTRADOS ==========");
+            Console.ResetColor();
+
 
             foreach (workers trabajador in trabajadores)
             {
@@ -84,8 +88,8 @@ namespace Codigo_para_el_proyecto_final__U_
                 Console.WriteLine($"Rol: {trabajador.Rol}");
                 Console.WriteLine($"Contraseña: {trabajador.password}");
             }
-
             Console.WriteLine("\nRegistro completado correctamente.");
+            Console.Clear();
 
             // LOGIN
             Console.WriteLine("\n========== LOGIN ==========");
@@ -184,8 +188,12 @@ namespace Codigo_para_el_proyecto_final__U_
         }
         static public void funciones_vendedores(int n, List<workers> a)
         {
-            Console.WriteLine("¿Que funcion desea ejecutar?\n1. Ventas mensuales\n2. Rendimiento\n3. Almacen idsponible");
+            Console.WriteLine("¿Que funcion desea ejecutar?\n1. Ventas mensuales\n2. Rendimiento\n3. Almacen disponible");
             int reader = int.Parse(Console.ReadLine());
+            while (!int.TryParse(Console.ReadLine(), out reader) || reader < 1 && reader > 2) 
+            { 
+                Console.WriteLine("Opcion invalida, por favor ingrese una opcion valida");
+            }
             string RutaArchivo, lector;
             switch (reader)
             {
@@ -236,22 +244,27 @@ namespace Codigo_para_el_proyecto_final__U_
                 case 3:
                     Console.WriteLine("Has llegado al final de tu jornada (opcion a/opcion b)");
                     lector = Console.ReadLine();
-                    Console.WriteLine("En orden de concluir con tu dia, registra la cantidad de productos restantes");
-                    string opcion_a = "cuento con documento de productos iniciales";
-                    string opcion_b = "no cuento con documento de productos iniciales";
-                    string [] opcion = { opcion_a, opcion_b };
-                    while (lector != opcion[0] && lector != opcion[1])
+                    Console.WriteLine("En orden de concluir con tu dia, registra la cantidad de productos restantes" +
+                        "\na) Cuento con documento de productos iniciales\nb) No cuento con documento de productos iniciales");
+                    char lector1 = char.Parse(Console.ReadLine().ToLower());
+                    while (lector1 != 'a' && lector1 != 'b' || !char.TryParse(Console.ReadLine(),out lector1))
                     {
                         Console.WriteLine("Opcion invalida, por favor ingrese una opcion valida");
-                        lector = Console.ReadLine();
+                        lector1 = char.Parse(Console.ReadLine());
                     }
-                    if (lector == opcion[0])
+                    if (lector1 == 'a')
                     {
+                        string[] almacentxt = File.ReadAllLines("productos.txt");
+                        for (int i = 0; i < almacentxt.Length; i++)
+                        {
+                            Console.WriteLine($"Producto n° {i + 1}: " + almacentxt[i]);
+                        }
+                        Console.WriteLine("Estos son los productos iniciales");
                         Console.WriteLine("Ingrese la cantidad de productos restantes: ");
                         int cantidad_restante = int.Parse(Console.ReadLine());
                         Console.WriteLine($"La cantidad de productos restantes es: {cantidad_restante}");
                     }
-                    else if (lector == opcion[1])
+                    else if (lector1 == 'B')
                     {
                         Console.WriteLine("Ingrese la cantidad de productos restantes: ");
                         int cantidad_restante = int.Parse(Console.ReadLine());
@@ -287,7 +300,7 @@ namespace Codigo_para_el_proyecto_final__U_
 
                 reader = char.ToLower(entrada[0]);
 
-                if (reader != 's' && reader != 'n')
+                if (reader != 's' && reader != 'n' || !char.TryParse(Console.ReadLine(), out reader))
                 {
                     Console.WriteLine("Opción inválida.");
                 }
@@ -298,10 +311,14 @@ namespace Codigo_para_el_proyecto_final__U_
                 Console.Clear();
                 Console.WriteLine("¿Que operacion desea ejecutar?");
                 Console.WriteLine("1. Gestionar almacen. \n2. Ajuste de recibos. \n3. Asignacion de salarios. \n4. Renovacion de contratos.");
-                //Las dos ultimas funciones son redudantes y podria simplemente ponerlas en la tercera funcion, igualmente, podria renombrar la funcion como gestion de empleados
+                //Las dos últimas funciones son redundantes y podria simplemente ponerlas en la tercera funcion, igualmente, podria renombrar la funcion como gestion de empleados
                 //la idea sera esa, reajustar y en base a la valoracion del empleado, asignar salario, posteriormente y en base a la segunda, considerar quienes se quedan
                 // y quienes se van.
                 int opcionElegida = int.Parse(Console.ReadLine());
+                while (opcionElegida < 1 && opcionElegida > 4 || !int.TryParse(Console.ReadLine(), out opcionElegida)) 
+                {
+                    Console.WriteLine("Ingrese una opcion valida y dentro de los parametros");
+                }
                 Console.Clear();
                 funciones_administrador(opcionElegida, a);
             }
@@ -312,11 +329,10 @@ namespace Codigo_para_el_proyecto_final__U_
                 Console.ReadKey();
             }
         }
-        static public void funciones_administrador(int n, List<workers> a)
+        static public void funciones_administrador(int n, List<workers> a) 
         {
             string rutaArchivo;
             string extractor;
-            bool corrector;
             switch (n)
             {
                 case 1:
@@ -331,11 +347,11 @@ namespace Codigo_para_el_proyecto_final__U_
                     {
                         Console.WriteLine("Ingrese el nombre del producto nº " + (i + 1) + ": ");
                         estante[i].nombre_producto = Console.ReadLine();
-                        /*while (string.IsNullOrWhiteSpace(estante[i].nombre_producto) && (corrector = int.TryParse(Console.ReadLine(), out estante[i].nombre_producto)))
+                        while (string.IsNullOrWhiteSpace(estante[i].nombre_producto) || !int.TryParse(Console.ReadLine(), out estante.nombre_producto))
                         {
                             Console.WriteLine("El nombre del producto no puede estar vacío. Por favor, ingrese un nombre válido.");
                             estante[i].nombre_producto = Console.ReadLine();
-                        }*/
+                        }
                         Console.WriteLine("Ingrese la cantidad del producto nº " + (i + 1) + ": ");
                         estante[i].cantidad_inicio = int.Parse(Console.ReadLine());
                         Console.WriteLine("Ingrese el precio de venta del producto nº " + (i + 1) + ": ");
@@ -479,6 +495,11 @@ namespace Codigo_para_el_proyecto_final__U_
                             foreach (string linea in lineas)
                             {
                                 Console.WriteLine(linea);
+                                lineas[] = linea.Split(',');
+                            }
+                            int contador = contenido.lenght();
+                            for (int i = 0; i < con) 
+                            { 
                             }
                         }
                         else
@@ -498,19 +519,43 @@ namespace Codigo_para_el_proyecto_final__U_
                         }
                         for (int i = 0; i < a.Count; i++)
                         {
-                           for (int j = 0; j < a.Count; j++) 
-                            {
-                                Console.WriteLine($"Trabajador: {a[i].name}\nVentas: {a[i].sells} \nErrores: {a[i].mistakes}");
-                                int puntaje = a[i].sells - a[i].mistakes;
-                                Console.WriteLine($"Puntaje de {a[i].name}: {puntaje}");
-                                a[i].score = puntaje;
-                                if (a[j].score < a[j].score)
-                                {
+                            Console.WriteLine($"Trabajador: {a[i].name}\nVentas: {a[i].sells} \nErrores: {a[i].mistakes}");
+                            int puntaje = a[i].sells - a[i].mistakes;
+                            Console.WriteLine($"Puntaje de {a[i].name}: {puntaje}");
+                            a[i].score = puntaje;
+                        }
+                        // calcular puntajes para cada trabajador
+                        // ordenar por puntaje descendente e imprimir ranking
+                        var puntajesOrdenados = a.OrderByDescending(s => s.score).ToList();
+                        for (int j = 0; j < puntajesOrdenados.Count; j++)
+                        {
+                            Console.WriteLine($"================Trabajador {(j + 1)}================" +
+                                $"\nNombre: {puntajesOrdenados[j].name}\nPuntaje: {puntajesOrdenados[j].score}");
+                        }
 
-                                    Console.WriteLine($"El trabajador {a[j].name} tiene un desempeño inferior al trabajador {a[j].name}");
-                                }
+                        // obtener puntaje mínimo y trabajador con peor desempeño (si necesitas ese dato)
+                        int minimo = a.Min(w => w.score);
+                        var peor = a.FirstOrDefault(w => w.score == minimo);
+                        if (peor != null)
+                        {
+                            Console.WriteLine($"Empleado con peor desempeño: {peor.name} con puntaje {peor.score}");
+                            Console.WriteLine("¿Desea eliminarlo de la planilla de trabajadores? (s/n)");
+                            respuesta = Console.ReadLine();
+                            while (respuesta.ToLower() != "s" && respuesta.ToLower() != "n")
+                            {
+                                Console.WriteLine("Respuesta inválida. Ingrese 's' para sí o 'n' para no.");
+                                respuesta = Console.ReadLine();
                             }
-                        }    
+                            if (respuesta.ToLower() == "s")
+                            {
+                                a.Remove(peor);
+                                Console.WriteLine($"Empleado {peor.name} eliminado de la planilla.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("No se eliminó ningún empleado.");
+                            }
+                        }
                     }
                     else
                     {
