@@ -432,6 +432,7 @@ namespace Codigo_para_el_proyecto_final__U_
                         for (int i = 0; i < recuperador.Length; i++)
                         {
                             Console.WriteLine($"Venta n° {i + 1} :" + recuperador[i]);
+
                         }
                     }
                     else 
