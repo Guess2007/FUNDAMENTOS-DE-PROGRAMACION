@@ -10,7 +10,7 @@
     <div id="navbar-container"></div>
     <section id="Calculadora" class="Calculadora">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut non inventore fugiat repellendus, ea atque autem voluptates quas dicta aperiam, repudiandae magni quos exercitationem rem pariatur accusantium aliquam culpa! Quo</p>
-        <a href="Calculadora_2.visible" onclick="toggleSeccion()" class="Acceso">Press to continue</a>
+        <a href="#Calculadora_2" onclick="toggleSeccion(); return false;" class="Acceso">Press to continue</a>
     </section>
     <section id= "Calculadora_2" class="Calculadora_2">
         <div id="screenHome">
@@ -203,6 +203,8 @@
   </div>
 </div>
     </section>
+    <script src="auth.js"></script>
+    <script>requireAuth();</script>
     <script src="main.js"></script>
 </body>
 </html>

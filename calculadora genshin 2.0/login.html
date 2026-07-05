@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Calculadora Genshin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <section class="container">
+        <div class="card" style="max-width:420px;margin:60px auto;">
+            <div class="card-title">🔐 Acceso</div>
+
+            <div class="char-tabs">
+                <button type="button" class="tab active" id="tabLogin">Iniciar sesión</button>
+                <button type="button" class="tab" id="tabRegister">Crear cuenta</button>
+            </div>
+
+            <!-- ── Formulario de login ── -->
+            <form id="loginForm">
+                <div class="field">
+                    <label>Usuario</label>
+                    <input type="text" id="loginUser" autocomplete="username" required/>
+                </div>
+                <div class="field" style="margin-top:10px">
+                    <label>Contraseña</label>
+                    <input type="password" id="loginPass" autocomplete="current-password" required/>
+                </div>
+                <div id="loginError" class="hint" style="display:none;border-color:#ef4444;color:#ef4444;margin-top:12px"></div>
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:16px">
+                    Entrar
+                </button>
+            </form>
+
+            <!-- ── Formulario de registro ── -->
+            <form id="registerForm" style="display:none">
+                <div class="field">
+                    <label>Usuario (mínimo 3 caracteres)</label>
+                    <input type="text" id="regUser" autocomplete="username" required/>
+                </div>
+                <div class="field" style="margin-top:10px">
+                    <label>Contraseña (mínimo 4 caracteres)</label>
+                    <input type="password" id="regPass" autocomplete="new-password" required/>
+                </div>
+                <div id="registerError" class="hint" style="display:none;border-color:#ef4444;color:#ef4444;margin-top:12px"></div>
+                <div id="registerSuccess" class="hint" style="display:none;border-color:var(--success);color:var(--success);margin-top:12px"></div>
+                <button type="submit" class="btn btn-accent" style="width:100%;justify-content:center;margin-top:16px">
+                    Registrarme
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
+    <script>
+        const tabLogin    = document.getElementById('tabLogin');
+        const tabRegister = document.getElementById('tabRegister');
+        const loginForm   = document.getElementById('loginForm');
+        const registerForm= document.getElementById('registerForm');
+
+        tabLogin.addEventListener('click', function () {
+            tabLogin.classList.add('active');
+            tabRegister.classList.remove('active');
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+        });
+
+        tabRegister.addEventListener('click', function () {
+            tabRegister.classList.add('active');
+            tabLogin.classList.remove('active');
+            registerForm.style.display = 'block';
+            loginForm.style.display = 'none';
+        });
+
+        // Si ya hay una sesión válida, no tiene sentido quedarse en login
+        checkAuth().then(function (status) {
+            if (status.loggedIn) window.location.href = 'calculadora.html';
+        });
+
+        loginForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const errorBox = document.getElementById('loginError');
+            errorBox.style.display = 'none';
+
+            const username = document.getElementById('loginUser').value.trim();
+            const password = document.getElementById('loginPass').value;
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    errorBox.textContent = data.error || 'No se pudo iniciar sesión';
+                    errorBox.style.display = 'block';
+                    return;
+                }
+
+                saveSession(data.token, data.username);
+                window.location.href = 'calculadora.html';
+            } catch (err) {
+                errorBox.textContent = 'No se pudo conectar con el servidor';
+                errorBox.style.display = 'block';
+            }
+        });
+
+        registerForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const errorBox   = document.getElementById('registerError');
+            const successBox = document.getElementById('registerSuccess');
+            errorBox.style.display = 'none';
+            successBox.style.display = 'none';
+
+            const username = document.getElementById('regUser').value.trim();
+            const password = document.getElementById('regPass').value;
+
+            try {
+                const res = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    errorBox.textContent = data.error || 'No se pudo crear la cuenta';
+                    errorBox.style.display = 'block';
+                    return;
+                }
+
+                successBox.textContent = data.message || 'Cuenta creada';
+                successBox.style.display = 'block';
+                registerForm.reset();
+
+                setTimeout(function () { tabLogin.click(); }, 1200);
+            } catch (err) {
+                errorBox.textContent = 'No se pudo conectar con el servidor';
+                errorBox.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

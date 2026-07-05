@@ -4,17 +4,20 @@ fetch("navbar.html")
         document.getElementById("navbar-container").innerHTML = html;
 
         // Resalta el enlace activo según la página actual
-        const links = document.querySelectorAll(".nav-links a");
+        const links = document.querySelectorAll(".nav-link");
         links.forEach(link => {
           if (link.href === window.location.href) {
             link.classList.add("active");
           }
         });
+
+        // Muestra "Login" o "Cerrar sesión (usuario)" según corresponda
+        if (typeof updateNavbarAuth === "function") updateNavbarAuth();
       });
  
 function toggleSeccion(){
-    const seccion = Document.getElementById("Calculadora_2");
-    seccion.classList.toggleSeccion("visible")
+    const seccion = document.getElementById("Calculadora_2");
+    seccion.classList.toggle("visible");
 }
 
 // ══════════════════════════════════════════════════════════════

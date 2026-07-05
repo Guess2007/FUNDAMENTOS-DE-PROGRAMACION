@@ -347,7 +347,7 @@ namespace Codigo_para_el_proyecto_final__U_
                     {
                         Console.WriteLine("Ingrese el nombre del producto nº " + (i + 1) + ": ");
                         estante[i].nombre_producto = Console.ReadLine();
-                        while (string.IsNullOrWhiteSpace(estante[i].nombre_producto) || !int.TryParse(Console.ReadLine(), out estante.nombre_producto))
+                        while (string.IsNullOrWhiteSpace(estante[i].nombre_producto) || !int.TryParse(Console.ReadLine(), out estante[i].nombre_producto))
                         {
                             Console.WriteLine("El nombre del producto no puede estar vacío. Por favor, ingrese un nombre válido.");
                             estante[i].nombre_producto = Console.ReadLine();
@@ -495,11 +495,10 @@ namespace Codigo_para_el_proyecto_final__U_
                             string[] lineas = File.ReadAllLines(nombreArchivo);
                             foreach (string linea in lineas)
                             {
-                                Console.WriteLine(linea);
-                                lineas[] = linea.Split(',');
+
                             }
-                            int contador = contenido.lenght();
-                            for (int i = 0; i < con) 
+                            int contador = lineas.Count();
+                            for (int i = 0; i < contador; i++) 
                             { 
                             }
                         }
