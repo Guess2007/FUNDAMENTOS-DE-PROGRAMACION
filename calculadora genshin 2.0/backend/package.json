@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Backend de login/registro para la Calculadora Genshin",
   "main": "server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "start": "node server.js"
   },

@@ -9,6 +9,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'cambia_esta_clave_por_una_segura';
 
+if (JWT_SECRET === 'cambia_esta_clave_por_una_segura') {
+  console.warn('⚠️  Estás usando el JWT_SECRET por defecto. Cámbialo en tu .env (o en las variables de entorno del hosting) antes de usar esto con datos reales.');
+}
+
 app.use(express.json());
 
 // Sirve todo el frontend (la carpeta del proyecto, un nivel arriba de /backend):
