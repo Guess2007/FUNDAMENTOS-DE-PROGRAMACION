@@ -213,6 +213,7 @@ function calculateRotation(rotationData) {
 
 let characters = [];
 let activeCharIdx = 0;
+const MAX_CHARACTERS = 4;
 
 function showScreen(screen)
 {
@@ -238,6 +239,10 @@ function init() {
 
 function addCharacter(render) {
   if (render === undefined) render = true;
+  if (characters.length >= MAX_CHARACTERS) {
+    if (render) renderTabs(); // por si el botón quedó visible, lo actualiza/oculta
+    return false;
+  }
   characters.push({
     name: "Personaje " + (characters.length + 1),
     stats: {
@@ -250,6 +255,7 @@ function addCharacter(render) {
   });
   activeCharIdx = characters.length - 1;
   if (render) { renderTabs(); renderActiveChar(); }
+  return true;
 }
 
 function renderTabs() {
@@ -265,6 +271,18 @@ function renderTabs() {
   }
 
   tabs.innerHTML = html;
+
+  // Botón "+ Agregar personaje": se deshabilita al llegar al máximo
+  const addBtn = document.getElementById('btnAddChar');
+  if (addBtn) {
+    const atMax = characters.length >= MAX_CHARACTERS;
+    addBtn.disabled = atMax;
+    addBtn.style.opacity = atMax ? '0.5' : '';
+    addBtn.style.cursor = atMax ? 'not-allowed' : '';
+    addBtn.textContent = atMax
+      ? 'Máximo ' + MAX_CHARACTERS + ' personajes'
+      : '+ Agregar personaje';
+  }
 
   // bind tab clicks
   tabs.querySelectorAll('.tab[data-idx]').forEach(function(btn) {
@@ -587,7 +605,7 @@ function renderResults(r) {
   res.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// ── Botón agregar personaje ──────────────────────────────────
+// ── Botón agregar personaje (máximo 4, ver MAX_CHARACTERS) ────
 document.getElementById('btnAddChar').addEventListener('click', function() {
   addCharacter(true);
 });
