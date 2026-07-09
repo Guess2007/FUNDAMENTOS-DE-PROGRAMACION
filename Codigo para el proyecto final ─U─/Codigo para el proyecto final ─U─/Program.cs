@@ -92,68 +92,75 @@ namespace Codigo_para_el_proyecto_final__U_
             Console.Clear();
 
             // LOGIN
-            Console.WriteLine("\n========== LOGIN ==========");
-
-            bool acceso = false;
-            workers usuarioLogueado = null;
-
-            for (int intento = 1; intento <= 3; intento++)
+            char continuarSistema;
+            do
             {
-                Console.Write("\nUsuario: ");
-                string usuario = Console.ReadLine();
+                Console.WriteLine("\n========== LOGIN ==========");
 
-                Console.Write("Contraseña: ");
-                string contraseña = Console.ReadLine();
+                bool acceso = false;
+                workers usuarioLogueado = null;
 
-                foreach (workers trabajador in trabajadores)
+                for (int intento = 1; intento <= 3; intento++)
                 {
-                    if (trabajador.name == usuario &&
-                        trabajador.password == contraseña)
+                    Console.Write("\nUsuario: ");
+                    string usuario = Console.ReadLine();
+
+                    Console.Write("Contraseña: ");
+                    string contraseña = Console.ReadLine();
+
+                    foreach (workers trabajador in trabajadores)
                     {
-                        usuarioLogueado = trabajador;
-                        acceso = true;
+                        if (trabajador.name == usuario &&
+                            trabajador.password == contraseña)
+                        {
+                            usuarioLogueado = trabajador;
+                            acceso = true;
+                            break;
+                        }
+                    }
+
+                    if (acceso)
                         break;
+
+                    Console.WriteLine("Usuario o contraseña incorrectos.");
+                    Console.WriteLine($"Intento {intento} de 3.");
+                }
+
+                if (!acceso)
+                {
+                    Console.WriteLine("\nDemasiados intentos fallidos.");
+                    Console.WriteLine("Acceso denegado.");
+                }
+                else
+                {
+                    // Bienvenida
+                    Console.WriteLine($"\nBienvenido {usuarioLogueado.name}");
+                    Console.WriteLine($"Rol detectado: {usuarioLogueado.Rol}");
+
+                    // Menú según el rol
+                    switch (usuarioLogueado.Rol)
+                    {
+                        case Rol.Administrador:
+                            Console.WriteLine("\n===== MENÚ ADMINISTRADOR =====");
+                            sistema_administradores(trabajadores.Count, trabajadores);
+                            break;
+
+                        case Rol.Empleado:
+                            Console.WriteLine("\n===== MENÚ EMPLEADO =====");
+                            sistema_vendedores(trabajadores.Count, trabajadores);
+                            break;
+
+                        default:
+                            Console.WriteLine("El rol asignado no existe.");
+                            break;
                     }
                 }
 
-                if (acceso)
-                    break;
-
-                Console.WriteLine("Usuario o contraseña incorrectos.");
-                Console.WriteLine($"Intento {intento} de 3.");
+                Console.Write("\n¿Desea volver a ingresar al sistema? (s/n): ");
             }
+            while (char.TryParse(Console.ReadLine(), out continuarSistema) && char.ToLower(continuarSistema) == 's');
 
-            if (!acceso)
-            {
-                Console.WriteLine("\nDemasiados intentos fallidos.");
-                Console.WriteLine("Acceso denegado.");
-                Console.ReadKey();
-                return;
-            }
-
-            // Bienvenida
-            Console.WriteLine($"\nBienvenido {usuarioLogueado.name}");
-            Console.WriteLine($"Rol detectado: {usuarioLogueado.Rol}");
-
-            // Menú según el rol
-            switch (usuarioLogueado.Rol)
-            {
-                case Rol.Administrador:
-                    Console.WriteLine("\n===== MENÚ ADMINISTRADOR =====");
-                    sistema_administradores(trabajadores.Count, trabajadores);
-                    break;
-
-                case Rol.Empleado:
-                    Console.WriteLine("\n===== MENÚ EMPLEADO =====");
-                    sistema_vendedores(trabajadores.Count, trabajadores);
-                    break;
-
-                default:
-                    Console.WriteLine("El rol asignado no existe.");
-                    break;
-            }
-
-            Console.WriteLine("\nPresione cualquier tecla para salir...");
+            Console.WriteLine("\nCerrando el sistema. Presione cualquier tecla para salir...");
             Console.ReadKey();
             //Si el admin nunca ingresa al sistema, ¿la lista de productos existira en caso de que el vendedor ingrese al sistema?
             //No, por lo tanto, el vendedor no podra acceder a la lista de productos, lo que es un gran problema,
@@ -215,15 +222,15 @@ namespace Codigo_para_el_proyecto_final__U_
                     break;
                 case 2:
                     List<workers> calificador = new List<workers>();
-                    for (int i = 0; i < n; i++) 
+                    for (int i = 0; i < n; i++)
                     {
                         calificador.Add(new workers());
                     }
                     Console.WriteLine("Sistema dedicado al informe de rendimiento de los trabajadres");
-                    for (int i = 0; i < n; i++) 
+                    for (int i = 0; i < n; i++)
                     {
                         Console.WriteLine($"Trabajador n° {i + 1}: {a[i].name}");
-                        Console.WriteLine($"ventas: "); 
+                        Console.WriteLine($"ventas: ");
                         calificador[i].sells = int.Parse(Console.ReadLine());
                         Console.WriteLine($"errores: ");
                         calificador[i].mistakes = int.Parse(Console.ReadLine());
@@ -231,9 +238,9 @@ namespace Codigo_para_el_proyecto_final__U_
                     Console.WriteLine("Este es el ranking de empleados:");
                     for (int i = 0; i < n; i++)
                     {
-                        for (int j = 1; j < n; j++) 
+                        for (int j = 1; j < n; j++)
                         {
-                            if (calificador[i].sells < calificador[j].sells) 
+                            if (calificador[i].sells < calificador[j].sells)
                             {
                                 Console.WriteLine($"El trabajar numero {i} es: {calificador[i].name}");
                                 Console.WriteLine($"El trabajador numero {j} es: {calificador[j].name}");
@@ -242,34 +249,36 @@ namespace Codigo_para_el_proyecto_final__U_
                     }
                     break;
                 case 3:
-                    Console.WriteLine("Has llegado al final de tu jornada (opcion a/opcion b)");
+                    Console.WriteLine("Has llegado al final de tu jornada");
                     lector = Console.ReadLine();
-                    Console.WriteLine("En orden de concluir con tu dia, registra la cantidad de productos restantes" +
-                        "\na) Cuento con documento de productos iniciales\nb) No cuento con documento de productos iniciales");
-                    char lector1 = char.Parse(Console.ReadLine().ToLower());
-                    while (lector1 != 'a' && lector1 != 'b' || !char.TryParse(Console.ReadLine(),out lector1))
-                    {
-                        Console.WriteLine("Opcion invalida, por favor ingrese una opcion valida");
-                        lector1 = char.Parse(Console.ReadLine());
-                    }
-                    if (lector1 == 'a')
-                    {
-                        string[] almacentxt = File.ReadAllLines("productos.txt");
-                        for (int i = 0; i < almacentxt.Length; i++)
+                    Console.WriteLine("En orden de concluir con tu dia, registra la cantidad de productos restantes");      
+                    List<productos> estante = new List<productos>();
+                    Console.WriteLine("Ingrese la cantidad de productos iniciales: "); int lector2 = int.Parse(Console.ReadLine());
+                        for (int i = 0; i < lector2; i++)
                         {
-                            Console.WriteLine($"Producto n° {i + 1}: " + almacentxt[i]);
+                            estante.Add(new productos());
                         }
-                        Console.WriteLine("Estos son los productos iniciales");
+                        for (int i = 0; i < lector2; i++)
+                        {
+                            Console.WriteLine("Ingrese el nombre del producto nº " + (i + 1) + ": ");
+                            estante[i].nombre_producto = Console.ReadLine();
+                            Console.WriteLine("Ingrese la cantidad del producto nº " + (i + 1) + ": ");
+                            estante[i].cantidad_inicio = int.Parse(Console.ReadLine());
+                            Console.WriteLine("Ingrese el precio de venta del producto nº " + (i + 1) + ": ");
+                            estante[i].precio_venta = decimal.Parse(Console.ReadLine());
+                        }
                         Console.WriteLine("Ingrese la cantidad de productos restantes: ");
-                        int cantidad_restante = int.Parse(Console.ReadLine());
-                        Console.WriteLine($"La cantidad de productos restantes es: {cantidad_restante}");
-                    }
-                    else if (lector1 == 'B')
-                    {
-                        Console.WriteLine("Ingrese la cantidad de productos restantes: ");
-                        int cantidad_restante = int.Parse(Console.ReadLine());
-                        Console.WriteLine($"La cantidad de productos restantes es: {cantidad_restante}");
-                    }
+                        for (int i = 0; i < lector2; i++)
+                        {
+                            Console.WriteLine("Producto nº " + (i + 1) + ": " + estante[i].nombre_producto);
+                            Console.WriteLine("Cantidad: "); estante[i].cantidad_final = int.Parse(Console.ReadLine());
+                            Console.WriteLine("Precio de venta: " + estante[i].precio_venta);
+                            int cantidad_vendida = estante[i].cantidad_inicio - estante[i].cantidad_final;
+                            int venta_producto = cantidad_vendida * (int)estante[i].precio_venta;
+                            Console.WriteLine($"Cantidad vendida del producto {estante[i].nombre_producto}: {cantidad_vendida}");
+                            int venta_total = estante.Sum(p => (p.cantidad_inicio - p.cantidad_final) * (int)p.precio_venta);
+                        }
+                        Console.WriteLine($"La venta total de todos los productos es: {estante.Sum(p => (p.cantidad_inicio - p.cantidad_final) * (int)p.precio_venta)}");
                     break;
             }
         }
@@ -347,7 +356,7 @@ namespace Codigo_para_el_proyecto_final__U_
                     {
                         Console.WriteLine("Ingrese el nombre del producto nº " + (i + 1) + ": ");
                         estante[i].nombre_producto = Console.ReadLine();
-                        while (string.IsNullOrWhiteSpace(estante[i].nombre_producto) || !int.TryParse(Console.ReadLine(), out estante[i].nombre_producto))
+                        while (string.IsNullOrWhiteSpace(estante[i].nombre_producto) || !int.TryParse(Console.ReadLine(), out estante.nombre_producto))
                         {
                             Console.WriteLine("El nombre del producto no puede estar vacío. Por favor, ingrese un nombre válido.");
                             estante[i].nombre_producto = Console.ReadLine();
@@ -426,46 +435,34 @@ namespace Codigo_para_el_proyecto_final__U_
                     int uit = 38500;
                     int igv = 18 / 100;
                     Console.WriteLine("Bienvenido al sistema de contabilizaciones");
-                    if (File.Exists(rutaArchivo = "ventas.txt"))
+                    Console.WriteLine("Registre sus ventas...");
+                    int[] ventas = new int[4];
+                    for (int i = 0; i < ventas.Length; i++)
                     {
-                        string recuperador = File.ReadAllText("ventas.txt");
-                        for (int i = 0; i < recuperador.Length; i++)
-                        {
-                            Console.WriteLine($"Venta n° {i + 1} :" + recuperador[i]);
-
-                        }
+                        Console.WriteLine($"ingreso n° {ventas[i + 1]}: ");
+                        ventas[i] = int.Parse(Console.ReadLine());
                     }
-                    else 
+                    int ventatotal = ventas.Sum();
+                    double ventaneta = ventatotal / igv;
+                    Console.Write($"Su venta anual es de: {ventatotal}");
+                    Console.WriteLine($"Con IGV: {ventaneta}");
+                    Console.WriteLine("Ingrese el coste de inventario: "); int costes = int.Parse(Console.ReadLine());
+                    double ganancias = ventaneta - costes;
+                    if (ganancias < uit)
                     {
-                        Console.WriteLine("Registre sus ventas...");
-                        int[] ventas = new int[4];
-                        for (int i = 0; i < ventas.Length; i++)
-                        {
-                            Console.WriteLine($"ingreso n° {ventas[i + 1]}: ");
-                            ventas[i] = int.Parse(Console.ReadLine());
-                        }
-                        int ventatotal = ventas.Sum();
-                        double ventaneta = ventatotal / igv;
-                        Console.Write($"Su venta anual es de: {ventatotal}");
-                        Console.WriteLine($"Con IGV: {ventaneta}");
-                        Console.WriteLine("Ingrese el coste de inventario: "); int costes = int.Parse(Console.ReadLine());
-                        double ganancias = ventaneta - costes;
-                        if (ganancias < uit)
-                        {
-                            Console.WriteLine($"Su ganancia es de: {ganancias}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Aplicando UIT");
-                            double impuesto = (ganancias - uit) * 8 / 100;
-                            Console.WriteLine($"El impuesto a la renta anual seria de {impuesto}");
-                            Console.WriteLine($"La ganancia anual seria de {ganancias - impuesto}");
-                            Console.ReadKey();
-                            rutaArchivo = "ganancia.txt";
-                            string ElementoAGuardar = Convert.ToString(ganancias - impuesto);
-                            File.WriteAllText(rutaArchivo, ElementoAGuardar);
-                        }
+                        Console.WriteLine($"Su ganancia es de: {ganancias}");
                     }
+                    else
+                    {
+                        Console.WriteLine("Aplicando UIT");
+                        double impuesto = (ganancias - uit) * 8 / 100;
+                        Console.WriteLine($"El impuesto a la renta anual seria de {impuesto}");
+                        Console.WriteLine($"La ganancia anual seria de {ganancias - impuesto}");
+                        Console.ReadKey();
+                        rutaArchivo = "ganancia.txt";
+                        string ElementoAGuardar = Convert.ToString(ganancias - impuesto);
+                        File.WriteAllText(rutaArchivo, ElementoAGuardar);
+                    } 
                     break;
                 case 3:
                     Console.WriteLine("Nienvenido al sistema de salarios");
